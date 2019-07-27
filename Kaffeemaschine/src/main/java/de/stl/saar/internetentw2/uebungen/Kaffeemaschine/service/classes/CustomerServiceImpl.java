@@ -97,6 +97,18 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerEntity customerEntity = createCustomerEntity(customer);
 		customerRepository.delete(customerEntity);
 	}
+
+
+	@Override
+	public boolean doesCustomerExist(String firstName, String lastName) {
+		CustomerEntity customerEntity= findCustomerByFirstNameAndLastName(firstName, lastName);
+		
+		if (customerEntity!=null) {
+			return true;
+		}
+		
+		return false;
+	}
 	
 
 	

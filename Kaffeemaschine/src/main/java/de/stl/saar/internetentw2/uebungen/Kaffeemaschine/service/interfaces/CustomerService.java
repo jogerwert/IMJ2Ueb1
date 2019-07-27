@@ -25,6 +25,8 @@ public interface CustomerService {
 
 	Customer findCustomerByFirstNameAndLastName(String firstName, 
 			String lastName);
+	
+	boolean doesCustomerExist(String firstName, String lastName);
 
 	List<Customer> findCustomerByLastName(String lastName);
 
