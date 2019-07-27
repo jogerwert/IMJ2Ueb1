@@ -49,6 +49,7 @@ public class LoginController {
 			
 			model.addAttribute("currentUser", customer);
 			
+			//TODO: remove
 			System.out.println(customer.getCustomerId());
 			
 			return "order";
