@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 
-public interface TeaRepository extends CrudRepository<TeaImpl, Long> {
+public interface TeaRepository extends CrudRepository<TeaEntity, Long> {
 
 	
 	List<Tea> findByTeaTypeEntity(TeaType teaType);

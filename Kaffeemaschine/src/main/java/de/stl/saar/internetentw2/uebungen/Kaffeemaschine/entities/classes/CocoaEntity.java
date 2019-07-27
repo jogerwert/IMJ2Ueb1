@@ -8,16 +8,16 @@ import javax.persistence.Id;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
 
 @Entity
-public class CocoaImpl implements Cocoa {
+public class CocoaEntity implements Cocoa {
 	private Long cocoaId;
 	private Boolean lowFat;
 	private Integer cookieCount;
 	
 	
-    protected CocoaImpl() {}
+    protected CocoaEntity() {}
 
 
-	public CocoaImpl(Boolean lowFat, Integer cookieCount) {
+	public CocoaEntity(Boolean lowFat, Integer cookieCount) {
 		super();
 		this.lowFat = lowFat;
 		this.cookieCount = cookieCount;

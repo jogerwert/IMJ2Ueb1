@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CustomerRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CustomerService;
@@ -18,21 +18,21 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	public Customer createCustomer(String firstName, String lastName) {
 		
-		CustomerImpl customerEntity = new CustomerImpl(firstName, lastName);
+		CustomerEntity customerEntity = new CustomerEntity(firstName, lastName);
 		saveCustomerEntity(customerEntity);
 		
 		Customer customer = customerEntity;
 		return customer;
 	}
 	
-	private void saveCustomerEntity(CustomerImpl customerEntity) {
+	private void saveCustomerEntity(CustomerEntity customerEntity) {
 		customerRepository.save(customerEntity);
 	}
 	
-	private List<Customer> createCustomers(List<CustomerImpl> customerEntities){
+	private List<Customer> createCustomers(List<CustomerEntity> customerEntities){
 		List<Customer> customers = new ArrayList<Customer>();
 		
-		for(CustomerImpl customerEntity: customerEntities) {
+		for(CustomerEntity customerEntity: customerEntities) {
 			Customer customer = customerEntity;
 			customers.add(customer);
 		}
@@ -40,12 +40,12 @@ public class CustomerServiceImpl implements CustomerService {
 		return customers;
 	}
 	
-	private CustomerImpl createCustomerEntity(Customer customer) {
+	private CustomerEntity createCustomerEntity(Customer customer) {
 		String firstName = customer.getFirstName();
 		String lastName = customer.getLastName();
 		Long customerId = customer.getCustomerId();
 		
-		CustomerImpl customerEntity = new CustomerImpl(firstName, lastName);
+		CustomerEntity customerEntity = new CustomerEntity(firstName, lastName);
 		customerEntity.setCustomerId(customerId);
 		
 		return customerEntity;
@@ -55,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<Customer> findAllCustomers() {
 		List<Customer> customers = new ArrayList<Customer>();
 		
-		for (CustomerImpl customerEntity : customerRepository.findAll()) {
+		for (CustomerEntity customerEntity : customerRepository.findAll()) {
 			Customer customer = customerEntity;
 			customers.add(customer);
 		}
@@ -66,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public Customer findCustomerById(long customerId) {
-		CustomerImpl customerEntity = customerRepository.findByCustomerId(customerId);
+		CustomerEntity customerEntity = customerRepository.findByCustomerId(customerId);
 		Customer customer = customerEntity;
 		return customer;
 	}
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer findCustomerByFirstNameAndLastName(
 			String firstName, String lastName) {
-		CustomerImpl customerEntity = customerRepository.findByFirstNameAndLastName(
+		CustomerEntity customerEntity = customerRepository.findByFirstNameAndLastName(
 				firstName, lastName);
 		
 		Customer customer = null;
@@ -87,20 +87,20 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public List<Customer> findCustomerByLastName(String lastName) {
-		List<CustomerImpl> customerEntities = customerRepository.findByLastName(lastName);
+		List<CustomerEntity> customerEntities = customerRepository.findByLastName(lastName);
 		List<Customer> customers = createCustomers(customerEntities);
 		return customers;
 	}
 	
 	@Override
 	public void saveCustomer(Customer customer) {
-		CustomerImpl customerEntity = createCustomerEntity(customer);
+		CustomerEntity customerEntity = createCustomerEntity(customer);
 		customerRepository.save(customerEntity);
 	}
 	
 	@Override
 	public void deleteCustomer(Customer customer) {
-		CustomerImpl customerEntity = createCustomerEntity(customer);
+		CustomerEntity customerEntity = createCustomerEntity(customer);
 		customerRepository.delete(customerEntity);
 	}
 

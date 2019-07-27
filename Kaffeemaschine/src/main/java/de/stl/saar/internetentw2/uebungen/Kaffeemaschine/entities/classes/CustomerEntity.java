@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
 
 @Entity
-public class CustomerImpl implements Customer {
+public class CustomerEntity implements Customer {
     private Long customerId;
     private String firstName;
     private String lastName;
 
-    protected CustomerImpl() {}
+    protected CustomerEntity() {}
 
-    public CustomerImpl(String firstName, String lastName) {
+    public CustomerEntity(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

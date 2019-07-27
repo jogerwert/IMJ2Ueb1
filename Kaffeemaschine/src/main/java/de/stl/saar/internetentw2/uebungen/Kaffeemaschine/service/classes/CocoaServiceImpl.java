@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CocoaRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CocoaService;
@@ -39,13 +39,13 @@ public class CocoaServiceImpl implements CocoaService{
 
 	@Override
 	public void saveCocoa(Cocoa cocoa) {
-		cocoaRepository.save((CocoaImpl)cocoa);
+		cocoaRepository.save((CocoaEntity)cocoa);
 		
 	}
 
 	@Override
 	public void deleteCocoa(Cocoa cocoa) {
-		cocoaRepository.delete((CocoaImpl)cocoa);
+		cocoaRepository.delete((CocoaEntity)cocoa);
 		
 	}
 

@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaTypeImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaTypeEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.TeaTypeRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaTypeService;
@@ -42,12 +42,12 @@ public class TeaTypeServiceImpl implements TeaTypeService{
 
 	@Override
 	public void saveTeaType(TeaType teaTypeEntity) {
-		teaTypeRepository.save((TeaTypeImpl)teaTypeEntity);
+		teaTypeRepository.save((TeaTypeEntity)teaTypeEntity);
 	}
 
 	@Override
 	public void deleteTeaType(TeaType teaTypeEntity) {
-		teaTypeRepository.delete((TeaTypeImpl)teaTypeEntity);
+		teaTypeRepository.delete((TeaTypeEntity)teaTypeEntity);
 		
 	}
 

@@ -13,7 +13,7 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cof
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
 
 @Entity
-public class CoffeeImpl implements Coffee {
+public class CoffeeEntity implements Coffee {
     private Long coffeeId;
     private Integer cookieCount;
     private Integer sugarCount;
@@ -22,9 +22,9 @@ public class CoffeeImpl implements Coffee {
     private Boolean withMilk;
     private CoffeeBean coffeeBeanEntity;
 
-    protected CoffeeImpl() {}
+    protected CoffeeEntity() {}
 
-	public CoffeeImpl(Integer cookieCount, Integer sugarCount, Boolean withDash, Boolean withChocolate,
+	public CoffeeEntity(Integer cookieCount, Integer sugarCount, Boolean withDash, Boolean withChocolate,
 			Boolean withMilk, CoffeeBean coffeeBeanEntity) {
 		super();
 		this.cookieCount = cookieCount;
@@ -86,7 +86,7 @@ public class CoffeeImpl implements Coffee {
 		this.withMilk = withMilk;
 	}
 
-	@ManyToOne(targetEntity = CoffeeBeanImpl.class, cascade = CascadeType.MERGE)
+	@ManyToOne(targetEntity = CoffeeBeanEntity.class, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "coffeeBeanId")
 	public CoffeeBean getCoffeeBeanEntity() {
 		return coffeeBeanEntity;

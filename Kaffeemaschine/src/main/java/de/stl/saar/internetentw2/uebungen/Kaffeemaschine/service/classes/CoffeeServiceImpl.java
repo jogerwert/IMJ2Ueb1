@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CoffeeRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CoffeeService;
@@ -28,12 +28,12 @@ public class CoffeeServiceImpl implements CoffeeService{
 
 	@Override
 	public void saveCoffee(Coffee coffee) {
-		this.coffeeRepository.save((CoffeeImpl)coffee);
+		this.coffeeRepository.save((CoffeeEntity)coffee);
 	}
 
 	@Override
 	public void deleteCoffee(Coffee coffee) {
-		this.coffeeRepository.delete((CoffeeImpl)coffee);
+		this.coffeeRepository.delete((CoffeeEntity)coffee);
 	}
 
 	@Override

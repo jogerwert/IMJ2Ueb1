@@ -9,13 +9,13 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaImpl;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeBeanImpl;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeImpl;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerImpl;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderImpl;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaImpl;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaTypeImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeBeanEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaTypeEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
@@ -55,21 +55,21 @@ public class DatabaseBootstrap implements
 	}
 	
 	public void initializeDatabase() {
-		teaTypeRepository.save(new TeaTypeImpl("Schwarzer Tee"));
-		teaTypeRepository.save(new TeaTypeImpl("Weißer Tee"));
-		teaTypeRepository.save(new TeaTypeImpl("Grüner Tee"));
-		teaTypeRepository.save(new TeaTypeImpl("Gelber Tee"));
-		teaTypeRepository.save(new TeaTypeImpl("Oolong Tee"));
-		teaTypeRepository.save(new TeaTypeImpl("Pu Erh Tee"));
-		teaTypeRepository.save(new TeaTypeImpl("Früchtetee"));
-		teaTypeRepository.save(new TeaTypeImpl("Kräutertee"));
+		teaTypeRepository.save(new TeaTypeEntity("Schwarzer Tee"));
+		teaTypeRepository.save(new TeaTypeEntity("Weißer Tee"));
+		teaTypeRepository.save(new TeaTypeEntity("Grüner Tee"));
+		teaTypeRepository.save(new TeaTypeEntity("Gelber Tee"));
+		teaTypeRepository.save(new TeaTypeEntity("Oolong Tee"));
+		teaTypeRepository.save(new TeaTypeEntity("Pu Erh Tee"));
+		teaTypeRepository.save(new TeaTypeEntity("Früchtetee"));
+		teaTypeRepository.save(new TeaTypeEntity("Kräutertee"));
 		
-		coffeeBeanRepository.save(new CoffeeBeanImpl("Excelsa"));
-		coffeeBeanRepository.save(new CoffeeBeanImpl("Arabica"));
-		coffeeBeanRepository.save(new CoffeeBeanImpl("Robusta"));
-		coffeeBeanRepository.save(new CoffeeBeanImpl("Maragogype"));
-		coffeeBeanRepository.save(new CoffeeBeanImpl("Liberia"));
-		coffeeBeanRepository.save(new CoffeeBeanImpl("Kopi Luwak"));
+		coffeeBeanRepository.save(new CoffeeBeanEntity("Excelsa"));
+		coffeeBeanRepository.save(new CoffeeBeanEntity("Arabica"));
+		coffeeBeanRepository.save(new CoffeeBeanEntity("Robusta"));
+		coffeeBeanRepository.save(new CoffeeBeanEntity("Maragogype"));
+		coffeeBeanRepository.save(new CoffeeBeanEntity("Liberia"));
+		coffeeBeanRepository.save(new CoffeeBeanEntity("Kopi Luwak"));
 
 		databaseTestMethod();
 		
@@ -83,22 +83,22 @@ public class DatabaseBootstrap implements
 		teaTypeRepository.findAll();
 		coffeeBeanRepository.findAll();
 		
-		CocoaImpl cocoaEntity=new CocoaImpl(true, 5);
+		CocoaEntity cocoaEntity=new CocoaEntity(true, 5);
 		cocoaRepository.save(cocoaEntity);
 		
-		CoffeeBeanImpl coffeeBeanEntity = new CoffeeBeanImpl("GUGGUGS");
+		CoffeeBeanEntity coffeeBeanEntity = new CoffeeBeanEntity("GUGGUGS");
 		coffeeBeanRepository.save(coffeeBeanEntity);
 		
-		CoffeeImpl coffeeEntity = new CoffeeImpl(5, 5, true, true, true, coffeeBeanEntity);
+		CoffeeEntity coffeeEntity = new CoffeeEntity(5, 5, true, true, true, coffeeBeanEntity);
 		coffeeRepository.save(coffeeEntity);
 
-		TeaTypeImpl teaTypeEntity= new TeaTypeImpl("ERDBEER");
+		TeaTypeEntity teaTypeEntity= new TeaTypeEntity("ERDBEER");
 		teaTypeRepository.save(teaTypeEntity);
 		
-		TeaImpl teaEntity = new TeaImpl(5, true, teaTypeEntity);
+		TeaEntity teaEntity = new TeaEntity(5, true, teaTypeEntity);
 		teaRepository.save(teaEntity);
 		
-		CustomerImpl customerEntity= new CustomerImpl("Herbert", "Olaf");
+		CustomerEntity customerEntity= new CustomerEntity("Herbert", "Olaf");
 		customerRepository.save(customerEntity);
 		
 		Calendar date = Calendar.getInstance();
@@ -110,7 +110,7 @@ public class DatabaseBootstrap implements
 		List <Cocoa> cocoaEntityList= new ArrayList<Cocoa>();
 		cocoaEntityList.add(cocoaEntity);
 		
-		OrderImpl orderEntity = new OrderImpl(date, customerEntity, teaEntityList, coffeeEntityList, cocoaEntityList);
+		OrderEntity orderEntity = new OrderEntity(date, customerEntity, teaEntityList, coffeeEntityList, cocoaEntityList);
 		System.out.println(orderEntity);
 		orderRepository.save(orderEntity);
 		System.out.println(orderEntity);

@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
 
 @Entity
-public class CoffeeBeanImpl implements CoffeeBean {
+public class CoffeeBeanEntity implements CoffeeBean {
 	private Long coffeeBeanId;
 	private String coffeeBeanName;
 	
 	
-    protected CoffeeBeanImpl() {}
+    protected CoffeeBeanEntity() {}
 
-    public CoffeeBeanImpl(String coffeeBeanName) {
+    public CoffeeBeanEntity(String coffeeBeanName) {
         this.coffeeBeanName = coffeeBeanName;
     }
 

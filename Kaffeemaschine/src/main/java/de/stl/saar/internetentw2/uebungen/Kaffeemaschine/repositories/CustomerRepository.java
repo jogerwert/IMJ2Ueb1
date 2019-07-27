@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerEntity;
 
 
 /**
@@ -14,14 +14,14 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.Custom
  *
  */
 public interface CustomerRepository extends 
-			CrudRepository<CustomerImpl, Long> {
+			CrudRepository<CustomerEntity, Long> {
 	/**
 	 * Sucht Kunden anhand des Nachnamens aus der Datenbank. Dabei ist es moeglich, dass
 	 * es mehrere Kunden mit demselben Nachnamen gibt. 
 	 * @param name Der Nachname, nach dem gesucht wird.
 	 * @return Die Liste mit den gefundenen Kunden.
 	 */
-    List<CustomerImpl> findByLastName(String name);
+    List<CustomerEntity> findByLastName(String name);
     /**
      * Findet einen Kunden anhand des Vor- und Nachnamens. Dabei wird davon ausgegangen,
      * dass es nur einen einzigen Kunden mit dieser Namenskombination gibt.
@@ -29,9 +29,9 @@ public interface CustomerRepository extends
      * @param lastName Der zu suchende Nachname.
      * @return Der gefundene Kunde.
      */
-    CustomerImpl findByFirstNameAndLastName(String firstName, 
+    CustomerEntity findByFirstNameAndLastName(String firstName, 
     		String lastName);
 
     
-    CustomerImpl findByCustomerId(long customerId);
+    CustomerEntity findByCustomerId(long customerId);
 }

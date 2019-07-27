@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Order;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.OrderRepository;
@@ -29,13 +29,13 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public void saveOrder(Order order) {
-		orderRepository.save((OrderImpl)order);
+		orderRepository.save((OrderEntity)order);
 		
 	}
 
 	@Override
 	public void deleteOrder(Order order) {
-		orderRepository.delete((OrderImpl)order);
+		orderRepository.delete((OrderEntity)order);
 		
 	}
 

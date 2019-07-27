@@ -13,15 +13,15 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 
 @Entity
-public class TeaImpl implements Tea {
+public class TeaEntity implements Tea {
     private Long teaId;
     private Integer sugarCount;
     private Boolean withMilk;
     private TeaType teaType;
 
-    protected TeaImpl() {}
+    protected TeaEntity() {}
 
-    public TeaImpl(Integer sugarCount, Boolean withMilk, TeaType teaTypeEntity) {
+    public TeaEntity(Integer sugarCount, Boolean withMilk, TeaType teaTypeEntity) {
 		this.sugarCount = sugarCount;
 		this.withMilk = withMilk;
 		this.teaType = teaTypeEntity;
@@ -60,7 +60,7 @@ public class TeaImpl implements Tea {
 	}
 
 
-	@ManyToOne(targetEntity = TeaTypeImpl.class, cascade = CascadeType.MERGE)
+	@ManyToOne(targetEntity = TeaTypeEntity.class, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "teaTypeId")
 	public TeaType getTeaTypeEntity() {
 		return teaType;

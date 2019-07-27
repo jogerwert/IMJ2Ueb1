@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 
 @Entity
-public class TeaTypeImpl implements TeaType {
+public class TeaTypeEntity implements TeaType {
 	private Long teaTypeId;
 	private String teaTypeName;
 	
 	
-    protected TeaTypeImpl() {}
+    protected TeaTypeEntity() {}
 
-    public TeaTypeImpl(String teaTypeName) {
+    public TeaTypeEntity(String teaTypeName) {
         this.teaTypeName = teaTypeName;
     }
     

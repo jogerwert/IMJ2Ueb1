@@ -26,7 +26,7 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Ord
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
 
 @Entity
-public class OrderImpl implements Order {
+public class OrderEntity implements Order {
     private Long orderId;
     private Calendar date;
     private Customer customer;
@@ -34,11 +34,11 @@ public class OrderImpl implements Order {
     private List<Coffee> coffeeList;
     private List<Cocoa> cocoaList;
 
-    protected OrderImpl() {}
+    protected OrderEntity() {}
 
 
 	
-	public OrderImpl(Calendar date, Customer customer, List<Tea> teaList,
+	public OrderEntity(Calendar date, Customer customer, List<Tea> teaList,
 			List<Coffee> coffeeList, List<Cocoa> cocoaList) {
 		super();
 		this.date = date;
@@ -69,7 +69,7 @@ public class OrderImpl implements Order {
 		this.date = date;
 	}
 
-	@ManyToOne(targetEntity = CustomerImpl.class, cascade = CascadeType.MERGE)
+	@ManyToOne(targetEntity = CustomerEntity.class, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "customerId")
 	public Customer getCustomer() {
 		return customer;
@@ -80,7 +80,7 @@ public class OrderImpl implements Order {
 	}
 
 
-	@ManyToMany(targetEntity = TeaImpl.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = TeaEntity.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "teaId")
 	public List<Tea> getTeaList() {
@@ -94,7 +94,7 @@ public class OrderImpl implements Order {
 	}
 
 
-	@ManyToMany(targetEntity = CoffeeImpl.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = CoffeeEntity.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "coffeeId")
 	public List<Coffee> getCoffeeList() {
@@ -108,7 +108,7 @@ public class OrderImpl implements Order {
 	}
 
 
-	@ManyToMany(targetEntity = CocoaImpl.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = CocoaEntity.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "cocoaId")
 	@Fetch(value = FetchMode.SUBSELECT)
 	public List<Cocoa> getCocoaList() {
