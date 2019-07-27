@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.TeaEntity;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.TeaTypeEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaTypeEntity;
 
 public interface TeaRepository extends CrudRepository<TeaEntity, Long> {
 

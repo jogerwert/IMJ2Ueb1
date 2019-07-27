@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.CustomerEntity;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.OrderEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.OrderRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.OrderService;
 

@@ -2,8 +2,8 @@ package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces;
 
 import java.util.List;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.CustomerEntity;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.OrderEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderEntity;
 
 
 public interface OrderService {

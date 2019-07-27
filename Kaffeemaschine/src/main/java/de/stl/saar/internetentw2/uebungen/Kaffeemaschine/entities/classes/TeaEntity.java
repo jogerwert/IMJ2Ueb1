@@ -1,4 +1,4 @@
-package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities;
+package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes;
 
 
 import javax.persistence.CascadeType;

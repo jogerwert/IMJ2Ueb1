@@ -1,4 +1,4 @@
-package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.model.interfaces;
+package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces;
 
 public interface Customer {
 	public Long getCustomerId();

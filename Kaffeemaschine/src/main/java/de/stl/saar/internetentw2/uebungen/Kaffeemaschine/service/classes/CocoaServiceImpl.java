@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.CocoaEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CocoaRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CocoaService;
 

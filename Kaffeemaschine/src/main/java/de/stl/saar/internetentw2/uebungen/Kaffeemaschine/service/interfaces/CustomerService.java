@@ -2,7 +2,7 @@ package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces;
 
 import java.util.List;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.model.interfaces.Customer;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
 
 
 /**
@@ -14,6 +14,8 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.model.interfaces.Custom
  *
  */
 public interface CustomerService {
+	
+	Customer createCustomer(String firstName, String lastName);
 
 	List<Customer> findAllCustomers();
 

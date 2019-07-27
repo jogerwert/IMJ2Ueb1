@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.CoffeeBeanEntity;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.CoffeeEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeBeanEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeEntity;
 
 public interface CoffeeRepository extends CrudRepository<CoffeeEntity, Long> {
 

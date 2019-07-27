@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.forms.CustomerForm;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.model.classes.CustomerImpl;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.model.interfaces.Customer;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CustomerService;
 
 @Controller
@@ -44,11 +43,13 @@ public class LoginController {
 			Customer customer = customerService
 					.findCustomerByFirstNameAndLastName(firstName, lastName);
 			if (customer == null) {
-				customer = new CustomerImpl(firstName, lastName);
+				customer = customerService.createCustomer(firstName, lastName);
 				customerService.saveCustomer(customer);
 			}
 			
 			model.addAttribute("currentUser", customer);
+			
+			System.out.println(customer.getCustomerId());
 			
 			return "order";
 		}
