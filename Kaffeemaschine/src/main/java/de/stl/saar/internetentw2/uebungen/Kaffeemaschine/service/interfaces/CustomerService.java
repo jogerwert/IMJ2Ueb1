@@ -2,7 +2,7 @@ package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces;
 
 import java.util.List;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.CustomerEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.model.interfaces.Customer;
 
 
 /**
@@ -15,18 +15,18 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.CustomerEntity
  */
 public interface CustomerService {
 
-	List<CustomerEntity> findAllCustomers();
+	List<Customer> findAllCustomers();
 
-	void saveCustomer(CustomerEntity customerEntity);
+	void saveCustomer(Customer customer);
 
-	void deleteCustomer(CustomerEntity customerEntity);
+	void deleteCustomer(Customer customer);
 
-	CustomerEntity findCustomerById(long customerId);
+	Customer findCustomerById(long customerId);
 
-	CustomerEntity findCustomerByFirstNameAndLastName(String firstName, 
+	Customer findCustomerByFirstNameAndLastName(String firstName, 
 			String lastName);
 
-	List<CustomerEntity> findCustomerByLastName(String lastName);
+	List<Customer> findCustomerByLastName(String lastName);
 
 
 }
