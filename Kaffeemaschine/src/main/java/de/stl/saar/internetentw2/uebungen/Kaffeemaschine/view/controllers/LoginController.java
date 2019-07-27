@@ -44,7 +44,6 @@ public class LoginController {
 					.findCustomerByFirstNameAndLastName(firstName, lastName);
 			if (customer == null) {
 				customer = customerService.createCustomer(firstName, lastName);
-				customerService.saveCustomer(customer);
 			}
 			
 			model.addAttribute("currentUser", customer);

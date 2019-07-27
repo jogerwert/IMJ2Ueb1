@@ -18,8 +18,15 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	public Customer createCustomer(String firstName, String lastName) {
 		
-		Customer customer = new CustomerEntity(firstName, lastName);
+		CustomerEntity customerEntity = new CustomerEntity(firstName, lastName);
+		saveCustomerEntity(customerEntity);
+		
+		Customer customer = customerEntity;
 		return customer;
+	}
+	
+	private void saveCustomerEntity(CustomerEntity customerEntity) {
+		customerRepository.save(customerEntity);
 	}
 	
 	private List<Customer> createCustomers(List<CustomerEntity> customerEntities){
@@ -36,21 +43,10 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerEntity createCustomerEntity(Customer customer) {
 		String firstName = customer.getFirstName();
 		String lastName = customer.getLastName();
+		Long customerId = customer.getCustomerId();
 		
-		CustomerEntity customerEntity = null;
-		customerEntity = findCustomerEntityByFirstNameAndLastName(firstName, lastName);
-		
-		if(customerEntity == null) {
-			customerEntity = new CustomerEntity(firstName, lastName);
-		}
-		
-		return customerEntity;
-	}
-	
-	private CustomerEntity findCustomerEntityByFirstNameAndLastName(
-			String firstName, String lastName) {
-		CustomerEntity customerEntity = customerRepository.findByFirstNameAndLastName(
-				firstName, lastName);
+		CustomerEntity customerEntity = new CustomerEntity(firstName, lastName);
+		customerEntity.setCustomerId(customerId);
 		
 		return customerEntity;
 	}
