@@ -25,6 +25,8 @@ public interface CustomerService {
 
 	CustomerEntity findCustomerByFirstNameAndLastName(String firstName, 
 			String lastName);
+	
+	boolean doesCustomerExist(String firstName, String lastName);
 
 	List<CustomerEntity> findCustomerByLastName(String lastName);
 
