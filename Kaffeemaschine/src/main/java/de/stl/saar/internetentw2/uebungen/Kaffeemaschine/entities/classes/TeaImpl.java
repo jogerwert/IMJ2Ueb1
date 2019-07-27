@@ -10,15 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class TeaEntity {
+public class TeaImpl {
     private Long teaId;
     private Integer sugarCount;
     private Boolean withMilk;
-    private TeaTypeEntity teaTypeEntity;
+    private TeaTypeImpl teaTypeEntity;
 
-    protected TeaEntity() {}
+    protected TeaImpl() {}
 
-    public TeaEntity(Integer sugarCount, Boolean withMilk, TeaTypeEntity teaTypeEntity) {
+    public TeaImpl(Integer sugarCount, Boolean withMilk, TeaTypeImpl teaTypeEntity) {
 		this.sugarCount = sugarCount;
 		this.withMilk = withMilk;
 		this.teaTypeEntity = teaTypeEntity;
@@ -59,13 +59,13 @@ public class TeaEntity {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "teaTypeId")
-	public TeaTypeEntity getTeaTypeEntity() {
+	public TeaTypeImpl getTeaTypeEntity() {
 		return teaTypeEntity;
 	}
 
 
 
-	public void setTeaTypeEntity(TeaTypeEntity teaTypeEntity) {
+	public void setTeaTypeEntity(TeaTypeImpl teaTypeEntity) {
 		this.teaTypeEntity = teaTypeEntity;
 	}
 

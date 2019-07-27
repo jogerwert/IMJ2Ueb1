@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaImpl;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CocoaRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CocoaService;
 
@@ -16,20 +16,20 @@ public class CocoaServiceImpl implements CocoaService{
 	private CocoaRepository cocoaRepository;
 
 	@Override
-	public List<CocoaEntity> findByLowFat(Boolean lowFat) {
+	public List<CocoaImpl> findByLowFat(Boolean lowFat) {
 		return cocoaRepository.findByLowFat(lowFat);
 	}
 
 	@Override
-	public CocoaEntity findByCocoaId(long cocoaId) {
+	public CocoaImpl findByCocoaId(long cocoaId) {
 		return cocoaRepository.findByCocoaId(cocoaId);
 	}
 
 	@Override
-	public List<CocoaEntity> findAllCocoas() {
-		List<CocoaEntity> cocoaEntitiesEntities = new ArrayList<CocoaEntity>();
+	public List<CocoaImpl> findAllCocoas() {
+		List<CocoaImpl> cocoaEntitiesEntities = new ArrayList<CocoaImpl>();
 		
-		for (CocoaEntity cocoaEntity : cocoaRepository.findAll()) {
+		for (CocoaImpl cocoaEntity : cocoaRepository.findAll()) {
 			cocoaEntitiesEntities.add(cocoaEntity);
 		}
 		
@@ -37,13 +37,13 @@ public class CocoaServiceImpl implements CocoaService{
 	}
 
 	@Override
-	public void saveCocoa(CocoaEntity cocoaEntity) {
+	public void saveCocoa(CocoaImpl cocoaEntity) {
 		cocoaRepository.save(cocoaEntity);
 		
 	}
 
 	@Override
-	public void deleteCocoa(CocoaEntity cocoaEntity) {
+	public void deleteCocoa(CocoaImpl cocoaEntity) {
 		cocoaRepository.delete(cocoaEntity);
 		
 	}

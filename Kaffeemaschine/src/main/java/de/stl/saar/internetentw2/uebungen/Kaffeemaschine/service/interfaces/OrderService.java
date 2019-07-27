@@ -2,21 +2,21 @@ package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces;
 
 import java.util.List;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerEntity;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderImpl;
 
 
 public interface OrderService {
 
-	List<OrderEntity> findAllOrders();
+	List<OrderImpl> findAllOrders();
 
-	void saveOrder(OrderEntity orderEntity);
+	void saveOrder(OrderImpl orderEntity);
 
-	void deleteOrder(OrderEntity orderEntity);
+	void deleteOrder(OrderImpl orderEntity);
 
-	OrderEntity findOrderById(long orderId);
+	OrderImpl findOrderById(long orderId);
 	
-	List<OrderEntity> findOrdersByCustomerEntity(CustomerEntity customerEntity);
+	List<OrderImpl> findOrdersByCustomerEntity(CustomerImpl customerEntity);
 
 
 }

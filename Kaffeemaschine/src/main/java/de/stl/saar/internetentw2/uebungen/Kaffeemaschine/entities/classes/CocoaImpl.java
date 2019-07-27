@@ -6,16 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class CocoaEntity {
+public class CocoaImpl {
 	private Long cocoaId;
 	private Boolean lowFat;
 	private Integer cookieCount;
 	
 	
-    protected CocoaEntity() {}
+    protected CocoaImpl() {}
 
 
-	public CocoaEntity(Boolean lowFat, Integer cookieCount) {
+	public CocoaImpl(Boolean lowFat, Integer cookieCount) {
 		super();
 		this.lowFat = lowFat;
 		this.cookieCount = cookieCount;

@@ -6,14 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class CoffeeBeanEntity {
+public class CoffeeBeanImpl {
 	private Long coffeeBeanId;
 	private String coffeeBeanName;
 	
 	
-    protected CoffeeBeanEntity() {}
+    protected CoffeeBeanImpl() {}
 
-    public CoffeeBeanEntity(String coffeeBeanName) {
+    public CoffeeBeanImpl(String coffeeBeanName) {
         this.coffeeBeanName = coffeeBeanName;
     }
 

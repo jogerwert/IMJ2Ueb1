@@ -2,18 +2,18 @@ package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces;
 
 import java.util.List;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaImpl;
 
 
 public interface TeaService {
 
-	List<TeaEntity> findAllTeas();
+	List<TeaImpl> findAllTeas();
 
-	void saveTea(TeaEntity teaEntity);
+	void saveTea(TeaImpl teaEntity);
 
-	void deleteTea(TeaEntity teaEntity);
+	void deleteTea(TeaImpl teaEntity);
 
-	TeaEntity findTeaById(long teaId);
+	TeaImpl findTeaById(long teaId);
 
 
 }

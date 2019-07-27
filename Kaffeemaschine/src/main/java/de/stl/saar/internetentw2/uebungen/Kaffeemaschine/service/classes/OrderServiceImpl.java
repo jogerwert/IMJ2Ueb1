@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerEntity;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderImpl;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.OrderRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.OrderService;
 
@@ -17,9 +17,9 @@ public class OrderServiceImpl implements OrderService{
 	private OrderRepository orderRepository;
 
 	@Override
-	public List<OrderEntity> findAllOrders() {
-		List<OrderEntity> orderEntitiesEntities = new ArrayList<OrderEntity>();	
-		for (OrderEntity orderEntity : orderRepository.findAll()) {
+	public List<OrderImpl> findAllOrders() {
+		List<OrderImpl> orderEntitiesEntities = new ArrayList<OrderImpl>();	
+		for (OrderImpl orderEntity : orderRepository.findAll()) {
 			orderEntitiesEntities.add(orderEntity);
 		}
 		
@@ -27,24 +27,24 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public void saveOrder(OrderEntity orderEntity) {
+	public void saveOrder(OrderImpl orderEntity) {
 		orderRepository.save(orderEntity);
 		
 	}
 
 	@Override
-	public void deleteOrder(OrderEntity orderEntity) {
+	public void deleteOrder(OrderImpl orderEntity) {
 		orderRepository.delete(orderEntity);
 		
 	}
 
 	@Override
-	public OrderEntity findOrderById(long orderId) {
+	public OrderImpl findOrderById(long orderId) {
 		return orderRepository.findByOrderId(orderId);
 	}
 
 	@Override
-	public List<OrderEntity> findOrdersByCustomerEntity(CustomerEntity customerEntity) {
+	public List<OrderImpl> findOrdersByCustomerEntity(CustomerImpl customerEntity) {
 		return orderRepository.findByCustomerEntity(customerEntity);
 	}
 

@@ -2,18 +2,18 @@ package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces;
 
 import java.util.List;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeImpl;
 
 
 public interface CoffeeService {
 
-	List<CoffeeEntity> findAllCoffees();
+	List<CoffeeImpl> findAllCoffees();
 
-	void saveCoffee(CoffeeEntity coffeeEntity);
+	void saveCoffee(CoffeeImpl coffeeEntity);
 
-	void deleteCoffee(CoffeeEntity coffeeEntity);
+	void deleteCoffee(CoffeeImpl coffeeEntity);
 
-	CoffeeEntity findCoffeeById(long coffeeId);
+	CoffeeImpl findCoffeeById(long coffeeId);
 
 
 }

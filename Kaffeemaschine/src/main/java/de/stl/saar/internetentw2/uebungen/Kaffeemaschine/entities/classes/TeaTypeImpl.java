@@ -6,14 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class TeaTypeEntity {
+public class TeaTypeImpl {
 	private Long teaTypeId;
 	private String teaTypeName;
 	
 	
-    protected TeaTypeEntity() {}
+    protected TeaTypeImpl() {}
 
-    public TeaTypeEntity(String teaTypeName) {
+    public TeaTypeImpl(String teaTypeName) {
         this.teaTypeName = teaTypeName;
     }
     

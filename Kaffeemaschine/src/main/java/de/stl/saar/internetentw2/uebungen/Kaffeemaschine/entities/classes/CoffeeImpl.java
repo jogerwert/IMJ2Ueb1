@@ -10,19 +10,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class CoffeeEntity {
+public class CoffeeImpl {
     private Long coffeeId;
     private Integer cookieCount;
     private Integer sugarCount;
     private Boolean withDash;
     private Boolean withChocolate;
     private Boolean withMilk;
-    private CoffeeBeanEntity coffeeBeanEntity;
+    private CoffeeBeanImpl coffeeBeanEntity;
 
-    protected CoffeeEntity() {}
+    protected CoffeeImpl() {}
 
-	public CoffeeEntity(Integer cookieCount, Integer sugarCount, Boolean withDash, Boolean withChocolate,
-			Boolean withMilk, CoffeeBeanEntity coffeeBeanEntity) {
+	public CoffeeImpl(Integer cookieCount, Integer sugarCount, Boolean withDash, Boolean withChocolate,
+			Boolean withMilk, CoffeeBeanImpl coffeeBeanEntity) {
 		super();
 		this.cookieCount = cookieCount;
 		this.sugarCount = sugarCount;
@@ -85,11 +85,11 @@ public class CoffeeEntity {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "coffeeBeanId")
-	public CoffeeBeanEntity getCoffeeBeanEntity() {
+	public CoffeeBeanImpl getCoffeeBeanEntity() {
 		return coffeeBeanEntity;
 	}
 
-	public void setCoffeeBeanEntity(CoffeeBeanEntity coffeeBeanEntity) {
+	public void setCoffeeBeanEntity(CoffeeBeanImpl coffeeBeanEntity) {
 		this.coffeeBeanEntity = coffeeBeanEntity;
 	}
 

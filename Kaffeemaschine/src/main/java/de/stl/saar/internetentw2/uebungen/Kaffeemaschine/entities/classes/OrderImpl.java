@@ -22,20 +22,20 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-public class OrderEntity {
+public class OrderImpl {
     private Long orderId;
     private Calendar date;
-    private CustomerEntity customerEntity;
-    private List<TeaEntity> teaEntityList;
-    private List<CoffeeEntity> coffeeEntityList;
-    private List<CocoaEntity> cocoaEntityList;
+    private CustomerImpl customerEntity;
+    private List<TeaImpl> teaEntityList;
+    private List<CoffeeImpl> coffeeEntityList;
+    private List<CocoaImpl> cocoaEntityList;
 
-    protected OrderEntity() {}
+    protected OrderImpl() {}
 
 
 	
-	public OrderEntity(Calendar date, CustomerEntity customerEntity, List<TeaEntity> teaEntityList,
-			List<CoffeeEntity> coffeeEntityList, List<CocoaEntity> cocoaEntityList) {
+	public OrderImpl(Calendar date, CustomerImpl customerEntity, List<TeaImpl> teaEntityList,
+			List<CoffeeImpl> coffeeEntityList, List<CocoaImpl> cocoaEntityList) {
 		super();
 		this.date = date;
 		this.customerEntity = customerEntity;
@@ -67,11 +67,11 @@ public class OrderEntity {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "customerId")
-	public CustomerEntity getCustomerEntity() {
+	public CustomerImpl getCustomerEntity() {
 		return customerEntity;
 	}
 
-	public void setCustomerEntity(CustomerEntity customerEntity) {
+	public void setCustomerEntity(CustomerImpl customerEntity) {
 		this.customerEntity = customerEntity;
 	}
 
@@ -79,13 +79,13 @@ public class OrderEntity {
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "teaId")
-	public List<TeaEntity> getTeaEntityList() {
+	public List<TeaImpl> getTeaEntityList() {
 		return teaEntityList;
 	}
 
 
 
-	public void setTeaEntityList(List<TeaEntity> teaEntityList) {
+	public void setTeaEntityList(List<TeaImpl> teaEntityList) {
 		this.teaEntityList = teaEntityList;
 	}
 
@@ -93,13 +93,13 @@ public class OrderEntity {
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "coffeeId")
-	public List<CoffeeEntity> getCoffeeEntityList() {
+	public List<CoffeeImpl> getCoffeeEntityList() {
 		return coffeeEntityList;
 	}
 
 
 
-	public void setCoffeeEntityList(List<CoffeeEntity> coffeeEntityList) {
+	public void setCoffeeEntityList(List<CoffeeImpl> coffeeEntityList) {
 		this.coffeeEntityList = coffeeEntityList;
 	}
 
@@ -108,13 +108,13 @@ public class OrderEntity {
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "cocoaId")
 	@Fetch(value = FetchMode.SUBSELECT)
-	public List<CocoaEntity> getCocoaEntityList() {
+	public List<CocoaImpl> getCocoaEntityList() {
 		return cocoaEntityList;
 	}
 
 
 
-	public void setCocoaEntityList(List<CocoaEntity> cocoaEntityList) {
+	public void setCocoaEntityList(List<CocoaImpl> cocoaEntityList) {
 		this.cocoaEntityList = cocoaEntityList;
 	}
 

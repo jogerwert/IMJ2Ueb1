@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaImpl;
 
-public interface CocoaRepository extends CrudRepository<CocoaEntity, Long> {
+public interface CocoaRepository extends CrudRepository<CocoaImpl, Long> {
 
 	
-	List<CocoaEntity> findByLowFat(Boolean lowFat);
+	List<CocoaImpl> findByLowFat(Boolean lowFat);
 	
     
-	CocoaEntity findByCocoaId(long cocoaId);
+	CocoaImpl findByCocoaId(long cocoaId);
 }
