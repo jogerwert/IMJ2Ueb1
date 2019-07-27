@@ -101,9 +101,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public boolean doesCustomerExist(String firstName, String lastName) {
-		CustomerEntity customerEntity= findCustomerByFirstNameAndLastName(firstName, lastName);
+		Customer customer= findCustomerByFirstNameAndLastName(firstName, lastName);
 		
-		if (customerEntity!=null) {
+		if (customer!=null) {
 			return true;
 		}
 		
