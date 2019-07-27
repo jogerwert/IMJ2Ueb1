@@ -4,17 +4,18 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeBeanImpl;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
 
 public interface CoffeeRepository extends CrudRepository<CoffeeImpl, Long> {
 
 	
-	List<CoffeeImpl> findByCoffeeBeanEntity(CoffeeBeanImpl coffeeBeanEntity);
+	List<Coffee> findByCoffeeBeanEntity(CoffeeBean coffeeBean);
 	
-	List<CoffeeImpl> findBySugarCount(int sugarCount);
+	List<Coffee> findBySugarCount(int sugarCount);
 	
-	List<CoffeeImpl> findByWithMilk(Boolean withMilk);
+	List<Coffee> findByWithMilk(Boolean withMilk);
 	
-	CoffeeImpl findByCoffeeId(long coffeeId);
+	Coffee findByCoffeeId(long coffeeId);
 }

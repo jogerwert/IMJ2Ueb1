@@ -16,6 +16,9 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.Custom
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderImpl;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaImpl;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaTypeImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CocoaRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CoffeeBeanRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CoffeeRepository;
@@ -100,24 +103,25 @@ public class DatabaseBootstrap implements
 		
 		Calendar date = Calendar.getInstance();
 		
-		List <TeaImpl> teaEntityList= new ArrayList<TeaImpl>();
+		List <Tea> teaEntityList= new ArrayList<Tea>();
 		teaEntityList.add(teaEntity);
-		List <CoffeeImpl> coffeeEntityList= new ArrayList<CoffeeImpl>();
+		List <Coffee> coffeeEntityList= new ArrayList<Coffee>();
 		coffeeEntityList.add(coffeeEntity);
-		List <CocoaImpl> cocoaEntityList= new ArrayList<CocoaImpl>();
+		List <Cocoa> cocoaEntityList= new ArrayList<Cocoa>();
 		cocoaEntityList.add(cocoaEntity);
 		
 		OrderImpl orderEntity = new OrderImpl(date, customerEntity, teaEntityList, coffeeEntityList, cocoaEntityList);
-//		System.out.println(orderEntity);
+		System.out.println(orderEntity);
 		orderRepository.save(orderEntity);
-//		System.out.println(orderEntity);
+		System.out.println(orderEntity);
 		
 		cocoaEntity.setCookieCount(50000);
-		orderEntity.getCocoaEntityList().get(0).setCookieCount(500000);
+		orderEntity.getCocoaList().get(0).setCookieCount(500000);
 		
 		orderRepository.save(orderEntity);
-//		System.out.println(orderRepository.findByCustomerEntity(customerEntity));
-//		
-//		System.out.println(orderRepository.findByOrderId(orderEntity.getOrderId()));
+		System.out.println(orderRepository.findByCustomer(customerEntity));
+		
+		System.out.println(orderRepository.findByOrderId(orderEntity.getOrderId()));
+		System.out.println(orderRepository.findByDate(date));
 	}
 }

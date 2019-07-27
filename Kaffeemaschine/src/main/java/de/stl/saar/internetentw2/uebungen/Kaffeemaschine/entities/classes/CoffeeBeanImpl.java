@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
+
 @Entity
-public class CoffeeBeanImpl {
+public class CoffeeBeanImpl implements CoffeeBean {
 	private Long coffeeBeanId;
 	private String coffeeBeanName;
 	
@@ -37,8 +39,10 @@ public class CoffeeBeanImpl {
 
 	@Override
 	public String toString() {
-		return "CoffeeBeanEntity [coffeeBeanId=" + coffeeBeanId + ", coffeeBeanName=" + coffeeBeanName + "]";
+		return "CoffeeBeanImpl [coffeeBeanId=" + coffeeBeanId + ", coffeeBeanName=" + coffeeBeanName + "]";
 	}
+
+
     
     
 }

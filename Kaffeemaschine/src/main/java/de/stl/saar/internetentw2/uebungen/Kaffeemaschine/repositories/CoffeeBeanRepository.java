@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeBeanImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
 
 public interface CoffeeBeanRepository extends CrudRepository<CoffeeBeanImpl, Long> {
 
 	
-	List<CoffeeBeanImpl> findByCoffeeBeanName(String coffeeBeanName);
+	List<CoffeeBean> findByCoffeeBeanName(String coffeeBeanName);
 	
     
-	CoffeeBeanImpl findByCoffeeBeanId(long coffeeBeanId);
+	CoffeeBean findByCoffeeBeanId(long coffeeBeanId);
 }

@@ -1,8 +1,6 @@
 package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes;
 
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -21,27 +19,33 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Order;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
+
 @Entity
-public class OrderImpl {
+public class OrderImpl implements Order {
     private Long orderId;
     private Calendar date;
-    private CustomerImpl customerEntity;
-    private List<TeaImpl> teaEntityList;
-    private List<CoffeeImpl> coffeeEntityList;
-    private List<CocoaImpl> cocoaEntityList;
+    private Customer customer;
+    private List<Tea> teaList;
+    private List<Coffee> coffeeList;
+    private List<Cocoa> cocoaList;
 
     protected OrderImpl() {}
 
 
 	
-	public OrderImpl(Calendar date, CustomerImpl customerEntity, List<TeaImpl> teaEntityList,
-			List<CoffeeImpl> coffeeEntityList, List<CocoaImpl> cocoaEntityList) {
+	public OrderImpl(Calendar date, Customer customer, List<Tea> teaList,
+			List<Coffee> coffeeList, List<Cocoa> cocoaList) {
 		super();
 		this.date = date;
-		this.customerEntity = customerEntity;
-		this.teaEntityList = teaEntityList;
-		this.coffeeEntityList = coffeeEntityList;
-		this.cocoaEntityList = cocoaEntityList;
+		this.customer = customer;
+		this.teaList = teaList;
+		this.coffeeList = coffeeList;
+		this.cocoaList = cocoaList;
 	}
 
 
@@ -65,69 +69,69 @@ public class OrderImpl {
 		this.date = date;
 	}
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(targetEntity = CustomerImpl.class, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "customerId")
-	public CustomerImpl getCustomerEntity() {
-		return customerEntity;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerEntity(CustomerImpl customerEntity) {
-		this.customerEntity = customerEntity;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = TeaImpl.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "teaId")
-	public List<TeaImpl> getTeaEntityList() {
-		return teaEntityList;
+	public List<Tea> getTeaList() {
+		return teaList;
 	}
 
 
 
-	public void setTeaEntityList(List<TeaImpl> teaEntityList) {
-		this.teaEntityList = teaEntityList;
+	public void setTeaList(List<Tea> teaList) {
+		this.teaList = teaList;
 	}
 
 
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = CoffeeImpl.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "coffeeId")
-	public List<CoffeeImpl> getCoffeeEntityList() {
-		return coffeeEntityList;
+	public List<Coffee> getCoffeeList() {
+		return coffeeList;
 	}
 
 
 
-	public void setCoffeeEntityList(List<CoffeeImpl> coffeeEntityList) {
-		this.coffeeEntityList = coffeeEntityList;
+	public void setCoffeeList(List<Coffee> coffeeList) {
+		this.coffeeList = coffeeList;
 	}
 
 
-
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = CocoaImpl.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "cocoaId")
 	@Fetch(value = FetchMode.SUBSELECT)
-	public List<CocoaImpl> getCocoaEntityList() {
-		return cocoaEntityList;
+	public List<Cocoa> getCocoaList() {
+		return cocoaList;
 	}
 
 
 
-	public void setCocoaEntityList(List<CocoaImpl> cocoaEntityList) {
-		this.cocoaEntityList = cocoaEntityList;
+	public void setCocoaList(List<Cocoa> cocoaList) {
+		this.cocoaList = cocoaList;
 	}
 
 
 
 	@Override
 	public String toString() {
-		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-		
-		return "OrderEntity [orderId=" + orderId + ", date=" + dateFormat.format(date.getTime()) + ", customerEntity=" + customerEntity
-				+ ", teaEntityList=" + teaEntityList + ", coffeeEntityList=" + coffeeEntityList + ", cocoaEntityList="
-				+ cocoaEntityList + "]";
+		return "OrderImpl [orderId=" + orderId + ", date=" + date.getTime() + ", customer=" + customer + ", teaList=" + teaList
+				+ ", coffeeList=" + coffeeList + ", cocoaList=" + cocoaList + "]";
 	}
+
+
+
+
 
 
 }

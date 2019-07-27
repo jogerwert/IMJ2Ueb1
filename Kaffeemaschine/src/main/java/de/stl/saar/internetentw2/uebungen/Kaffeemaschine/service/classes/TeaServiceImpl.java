@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.TeaRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaService;
 
@@ -16,30 +17,30 @@ public class TeaServiceImpl implements TeaService{
 	private TeaRepository teaRepository;
 
 	@Override
-	public List<TeaImpl> findAllTeas() {
-		List<TeaImpl> teaEntities = new ArrayList<TeaImpl>();	
-		for (TeaImpl teaEntity : teaRepository.findAll()) {
-			teaEntities.add(teaEntity);
+	public List<Tea> findAllTeas() {
+		List<Tea> teaList = new ArrayList<Tea>();	
+		for (Tea tea : teaRepository.findAll()) {
+			teaList.add(tea);
 		}
 		
-		return teaEntities;
+		return teaList;
 	}
 
 	@Override
-	public void saveTea(TeaImpl teaEntity) {
-		teaRepository.save(teaEntity);
+	public void saveTea(Tea tea) {
+		teaRepository.save((TeaImpl)tea);
 		
 	}
 
 	@Override
-	public void deleteTea(TeaImpl teaEntity) {
-		teaRepository.delete(teaEntity);
+	public void deleteTea(Tea tea) {
+		teaRepository.delete((TeaImpl)tea);
 		
 	}
 
 	@Override
-	public TeaImpl findTeaById(long teaId) {
-		TeaImpl teaEntity = teaRepository.findByTeaId(teaId);
+	public Tea findTeaById(long teaId) {
+		Tea teaEntity = teaRepository.findByTeaId(teaId);
 		return teaEntity;
 	}
 	

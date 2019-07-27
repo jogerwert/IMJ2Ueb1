@@ -9,20 +9,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
+
 @Entity
-public class CoffeeImpl {
+public class CoffeeImpl implements Coffee {
     private Long coffeeId;
     private Integer cookieCount;
     private Integer sugarCount;
     private Boolean withDash;
     private Boolean withChocolate;
     private Boolean withMilk;
-    private CoffeeBeanImpl coffeeBeanEntity;
+    private CoffeeBean coffeeBeanEntity;
 
     protected CoffeeImpl() {}
 
 	public CoffeeImpl(Integer cookieCount, Integer sugarCount, Boolean withDash, Boolean withChocolate,
-			Boolean withMilk, CoffeeBeanImpl coffeeBeanEntity) {
+			Boolean withMilk, CoffeeBean coffeeBeanEntity) {
 		super();
 		this.cookieCount = cookieCount;
 		this.sugarCount = sugarCount;
@@ -83,13 +86,13 @@ public class CoffeeImpl {
 		this.withMilk = withMilk;
 	}
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(targetEntity = CoffeeBeanImpl.class, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "coffeeBeanId")
-	public CoffeeBeanImpl getCoffeeBeanEntity() {
+	public CoffeeBean getCoffeeBeanEntity() {
 		return coffeeBeanEntity;
 	}
 
-	public void setCoffeeBeanEntity(CoffeeBeanImpl coffeeBeanEntity) {
+	public void setCoffeeBeanEntity(CoffeeBean coffeeBeanEntity) {
 		this.coffeeBeanEntity = coffeeBeanEntity;
 	}
 

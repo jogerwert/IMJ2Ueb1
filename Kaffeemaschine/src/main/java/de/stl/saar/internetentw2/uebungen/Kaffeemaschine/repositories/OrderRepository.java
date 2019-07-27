@@ -5,15 +5,16 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerImpl;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Order;
 
 public interface OrderRepository extends CrudRepository<OrderImpl, Long> {
 
 	
-	List<OrderImpl> findByCustomerEntity(CustomerImpl customerEntity);
+	List<Order> findByCustomer(Customer customer);
 	
-	List<OrderImpl> findByDate(Calendar date);
+	List<Order> findByDate(Calendar date);
 	
-	OrderImpl findByOrderId(long orderId);
+	Order findByOrderId(long orderId);
 }

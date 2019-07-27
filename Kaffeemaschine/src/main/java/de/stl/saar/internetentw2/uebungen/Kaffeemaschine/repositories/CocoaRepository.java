@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
 
 public interface CocoaRepository extends CrudRepository<CocoaImpl, Long> {
 
 	
-	List<CocoaImpl> findByLowFat(Boolean lowFat);
+	List<Cocoa> findByLowFat(Boolean lowFat);
 	
     
-	CocoaImpl findByCocoaId(long cocoaId);
+	Cocoa findByCocoaId(long cocoaId);
 }

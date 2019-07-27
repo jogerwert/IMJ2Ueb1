@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CoffeeRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CoffeeService;
 
@@ -16,27 +17,27 @@ public class CoffeeServiceImpl implements CoffeeService{
 	private CoffeeRepository coffeeRepository;
 
 	@Override
-	public List<CoffeeImpl> findAllCoffees() {
-		List<CoffeeImpl> coffeeEntities = new ArrayList<CoffeeImpl>();	
-		for (CoffeeImpl coffeeEntity : coffeeRepository.findAll()) {
-			coffeeEntities.add(coffeeEntity);
+	public List<Coffee> findAllCoffees() {
+		List<Coffee> coffeeList = new ArrayList<Coffee>();	
+		for (Coffee coffee : coffeeRepository.findAll()) {
+			coffeeList.add(coffee);
 		}
 		
-		return coffeeEntities;
+		return coffeeList;
 	}
 
 	@Override
-	public void saveCoffee(CoffeeImpl coffeeEntity) {
-		this.coffeeRepository.save(coffeeEntity);
+	public void saveCoffee(Coffee coffee) {
+		this.coffeeRepository.save((CoffeeImpl)coffee);
 	}
 
 	@Override
-	public void deleteCoffee(CoffeeImpl coffeeEntity) {
-		this.coffeeRepository.delete(coffeeEntity);
+	public void deleteCoffee(Coffee coffee) {
+		this.coffeeRepository.delete((CoffeeImpl)coffee);
 	}
 
 	@Override
-	public CoffeeImpl findCoffeeById(long coffeeId) {
+	public Coffee findCoffeeById(long coffeeId) {
 		return this.coffeeRepository.findByCoffeeId(coffeeId);
 	}
 

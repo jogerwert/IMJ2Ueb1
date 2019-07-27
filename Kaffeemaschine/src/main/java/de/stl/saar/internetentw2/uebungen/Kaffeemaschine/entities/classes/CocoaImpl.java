@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
+
 @Entity
-public class CocoaImpl {
+public class CocoaImpl implements Cocoa {
 	private Long cocoaId;
 	private Boolean lowFat;
 	private Integer cookieCount;
@@ -21,33 +23,45 @@ public class CocoaImpl {
 		this.cookieCount = cookieCount;
 	}
 
-    @Id
+
+    @Override
+	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getCocoaId() {
 		return cocoaId;
 	}
 
 
+
+	@Override
 	public void setCocoaId(Long cocoaId) {
 		this.cocoaId = cocoaId;
 	}
 
 
+
+	@Override
 	public Boolean getLowFat() {
 		return lowFat;
 	}
 
 
+
+	@Override
 	public void setLowFat(Boolean lowFat) {
 		this.lowFat = lowFat;
 	}
 
 
+
+	@Override
 	public Integer getCookieCount() {
 		return cookieCount;
 	}
 
 
+
+	@Override
 	public void setCookieCount(Integer cookieCount) {
 		this.cookieCount = cookieCount;
 	}
@@ -55,7 +69,7 @@ public class CocoaImpl {
 
 	@Override
 	public String toString() {
-		return "CocoaEntity [cocoaId=" + cocoaId + ", lowFat=" + lowFat + ", cookieCount=" + cookieCount + "]";
+		return "CocoaImpl [cocoaId=" + cocoaId + ", lowFat=" + lowFat + ", cookieCount=" + cookieCount + "]";
 	}
 
 

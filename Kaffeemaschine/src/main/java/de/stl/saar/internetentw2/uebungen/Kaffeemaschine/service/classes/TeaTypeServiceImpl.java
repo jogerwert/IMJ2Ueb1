@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaTypeImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.TeaTypeRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaTypeService;
 
@@ -17,36 +18,36 @@ public class TeaTypeServiceImpl implements TeaTypeService{
 	
 	
 	@Override
-	public List<TeaTypeImpl> findByTeaTypeName(String teaTypeName) {
-		List<TeaTypeImpl> teaTypeEntity = this.teaTypeRepository.findByTeaTypeName(teaTypeName);
-		return teaTypeEntity;
+	public List<TeaType> findByTeaTypeName(String teaTypeName) {
+		List<TeaType> teaType = this.teaTypeRepository.findByTeaTypeName(teaTypeName);
+		return teaType;
 	}
 
 	@Override
-	public TeaTypeImpl findByTeaTypeId(long customerId) {
-		TeaTypeImpl teaTypeEntity = this.teaTypeRepository.findByTeaTypeId(customerId);
+	public TeaType findByTeaTypeId(long customerId) {
+		TeaType teaTypeEntity = this.teaTypeRepository.findByTeaTypeId(customerId);
 		return teaTypeEntity;
 	}
 	
 	@Override
-	public List<TeaTypeImpl> findAllTeaTypes() {
-		List<TeaTypeImpl> teaTypeEntities = new ArrayList<TeaTypeImpl>();
+	public List<TeaType> findAllTeaTypes() {
+		List<TeaType> teaTypeList = new ArrayList<TeaType>();
 		
-		for (TeaTypeImpl teaTypeEntity : teaTypeRepository.findAll()) {
-			teaTypeEntities.add(teaTypeEntity);
+		for (TeaType teaType : teaTypeRepository.findAll()) {
+			teaTypeList.add(teaType);
 		}
 		
-		return teaTypeEntities;
+		return teaTypeList;
 	}
 
 	@Override
-	public void saveTeaType(TeaTypeImpl teaTypeEntity) {
-		teaTypeRepository.save(teaTypeEntity);
+	public void saveTeaType(TeaType teaTypeEntity) {
+		teaTypeRepository.save((TeaTypeImpl)teaTypeEntity);
 	}
 
 	@Override
-	public void deleteTeaType(TeaTypeImpl teaTypeEntity) {
-		teaTypeRepository.delete(teaTypeEntity);
+	public void deleteTeaType(TeaType teaTypeEntity) {
+		teaTypeRepository.delete((TeaTypeImpl)teaTypeEntity);
 		
 	}
 

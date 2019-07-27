@@ -5,16 +5,17 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaImpl;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaTypeImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 
 public interface TeaRepository extends CrudRepository<TeaImpl, Long> {
 
 	
-	List<TeaImpl> findByTeaTypeEntity(TeaTypeImpl teaTypeEntity);
+	List<Tea> findByTeaTypeEntity(TeaType teaType);
 	
-	List<TeaImpl> findBySugarCount(int sugarCount);
+	List<Tea> findBySugarCount(int sugarCount);
 	
-	List<TeaImpl> findByWithMilk(Boolean withMilk);
+	List<Tea> findByWithMilk(Boolean withMilk);
 	
-	TeaImpl findByTeaId(long teaId);
+	Tea findByTeaId(long teaId);
 }

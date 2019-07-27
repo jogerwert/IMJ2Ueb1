@@ -9,19 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
+
 @Entity
-public class TeaImpl {
+public class TeaImpl implements Tea {
     private Long teaId;
     private Integer sugarCount;
     private Boolean withMilk;
-    private TeaTypeImpl teaTypeEntity;
+    private TeaType teaType;
 
     protected TeaImpl() {}
 
-    public TeaImpl(Integer sugarCount, Boolean withMilk, TeaTypeImpl teaTypeEntity) {
+    public TeaImpl(Integer sugarCount, Boolean withMilk, TeaType teaTypeEntity) {
 		this.sugarCount = sugarCount;
 		this.withMilk = withMilk;
-		this.teaTypeEntity = teaTypeEntity;
+		this.teaType = teaTypeEntity;
 	}
 
     @Id
@@ -57,25 +60,27 @@ public class TeaImpl {
 	}
 
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(targetEntity = TeaTypeImpl.class, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "teaTypeId")
-	public TeaTypeImpl getTeaTypeEntity() {
-		return teaTypeEntity;
+	public TeaType getTeaTypeEntity() {
+		return teaType;
 	}
 
 
 
-	public void setTeaTypeEntity(TeaTypeImpl teaTypeEntity) {
-		this.teaTypeEntity = teaTypeEntity;
+	public void setTeaTypeEntity(TeaType teaTypeEntity) {
+		this.teaType = teaTypeEntity;
 	}
-
-
 
 	@Override
 	public String toString() {
-		return "TeaEntity [teaId=" + teaId + ", sugarCount=" + sugarCount + ", withMilk=" + withMilk
-				+ ", teaTypeEntity=" + teaTypeEntity + "]";
+		return "TeaImpl [teaId=" + teaId + ", sugarCount=" + sugarCount + ", withMilk=" + withMilk + ", teaType="
+				+ teaType + "]";
 	}
+
+
+
+
 
 
 }

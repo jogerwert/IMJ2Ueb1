@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
+
 @Entity
-public class TeaTypeImpl {
+public class TeaTypeImpl implements TeaType {
 	private Long teaTypeId;
 	private String teaTypeName;
 	
@@ -37,7 +39,7 @@ public class TeaTypeImpl {
 
 	@Override
 	public String toString() {
-		return "TeaTypeEntity [teaTypeId=" + teaTypeId + ", teaTypeName=" + teaTypeName + "]";
+		return "TeaTypeImpl [teaTypeId=" + teaTypeId + ", teaTypeName=" + teaTypeName + "]";
 	}
 
 

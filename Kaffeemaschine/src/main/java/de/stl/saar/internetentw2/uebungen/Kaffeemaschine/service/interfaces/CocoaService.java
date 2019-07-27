@@ -2,18 +2,18 @@ package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces;
 
 import java.util.List;
 
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
 
 public interface CocoaService {
 	
 	
-	List<CocoaImpl> findByLowFat(Boolean lowFat);
+	List<Cocoa> findByLowFat(Boolean lowFat);
     
-	CocoaImpl findByCocoaId(long cocoaId);
+	Cocoa findByCocoaId(long cocoaId);
 
-	List<CocoaImpl> findAllCocoas();
+	List<Cocoa> findAllCocoas();
 
-	void saveCocoa(CocoaImpl cocoaEntity);
+	void saveCocoa(Cocoa cocoa);
 	
-	void deleteCocoa(CocoaImpl cocoaEntity);
+	void deleteCocoa(Cocoa cocoa);
 }

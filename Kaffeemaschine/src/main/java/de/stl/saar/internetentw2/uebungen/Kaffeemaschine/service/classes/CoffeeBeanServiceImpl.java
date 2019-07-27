@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeBeanImpl;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CoffeeBeanRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CoffeeBeanService;
 
@@ -18,32 +19,32 @@ public class CoffeeBeanServiceImpl implements CoffeeBeanService{
 
 
 	@Override
-	public List<CoffeeBeanImpl> findByCoffeeBeanName(String coffeeBeanName) {
+	public List<CoffeeBean> findByCoffeeBeanName(String coffeeBeanName) {
 		return this.coffeeBeanRepository.findByCoffeeBeanName(coffeeBeanName);
 	}
 
 	@Override
-	public CoffeeBeanImpl findByCoffeeBeanId(long coffeeBeanId) {
+	public CoffeeBean findByCoffeeBeanId(long coffeeBeanId) {
 		return this.coffeeBeanRepository.findByCoffeeBeanId(coffeeBeanId);
 	}
 
 	@Override
-	public List<CoffeeBeanImpl> findAllCoffeeBeans() {
-		List<CoffeeBeanImpl> coffeeBeanEntities = new ArrayList<CoffeeBeanImpl>();
-		for(CoffeeBeanImpl coffeeBeanEntity : coffeeBeanRepository.findAll()) {
-			coffeeBeanEntities.add(coffeeBeanEntity);
+	public List<CoffeeBean> findAllCoffeeBeans() {
+		List<CoffeeBean> coffeeBeanList = new ArrayList<CoffeeBean>();
+		for(CoffeeBean coffeeBean : coffeeBeanRepository.findAll()) {
+			coffeeBeanList.add(coffeeBean);
 		}
-		return coffeeBeanEntities;
+		return coffeeBeanList;
 	}
 
 	@Override
-	public void saveCoffeeBean(CoffeeBeanImpl coffeeBeanEntity) {
-		this.coffeeBeanRepository.save(coffeeBeanEntity);
+	public void saveCoffeeBean(CoffeeBean coffeeBean) {
+		this.coffeeBeanRepository.save((CoffeeBeanImpl)coffeeBean);
 	}
 
 	@Override
-	public void deleteCoffeeBean(CoffeeBeanImpl coffeeBeanEntity) {
-		this.coffeeBeanRepository.delete(coffeeBeanEntity);
+	public void deleteCoffeeBean(CoffeeBean coffeeBean) {
+		this.coffeeBeanRepository.delete((CoffeeBeanImpl)coffeeBean);
 	}
 
 
