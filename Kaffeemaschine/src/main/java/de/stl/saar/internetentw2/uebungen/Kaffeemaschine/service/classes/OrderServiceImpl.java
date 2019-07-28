@@ -12,6 +12,15 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Ord
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.OrderRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.OrderService;
 
+/**
+ * Service-Klasse, welche das Bestellung-Repository kapselt.
+ * Es werden ausgewaehlte Methoden zum Laden/Speichern/Loeschen
+ * von Objekten der Datenbank zur Verfuegung gestellt.
+ * 
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Service
 public class OrderServiceImpl implements OrderService{
 	@Autowired
@@ -27,12 +36,23 @@ public class OrderServiceImpl implements OrderService{
 		return orderList;
 	}
 
+	
+	/**
+	 * Diese Methode speichert/ueberschreibt Bestellung-Objekte in der Datenbank.
+	 * Im Falle der Speicherung wird das Bestellung-Objekt mit einer Id ausgestattet.
+	 * Die Id ist der Primaerschluessel.
+	 * @param order - Bestellung-Objekt, dessen orderId veraendert wird, sofern es nicht in der DB existiert.
+	 */
 	@Override
 	public void saveOrder(Order order) {
 		orderRepository.save((OrderEntity)order);
 		
 	}
 
+	/**
+	 * Loescht ein uebergebenes Bestellung-Objekt aus der Datenbank.
+	 * @param order - Bestellung-Objekt
+	 */
 	@Override
 	public void deleteOrder(Order order) {
 		orderRepository.delete((OrderEntity)order);

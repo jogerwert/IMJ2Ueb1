@@ -4,8 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
+
+/**
+ * Entity-Klasse fuer Kaffeebohnen. Wird von Hibernate verwendet.
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
 
 @Entity
 public class CoffeeBeanEntity implements CoffeeBean {
@@ -39,8 +44,10 @@ public class CoffeeBeanEntity implements CoffeeBean {
 
 	@Override
 	public String toString() {
-		return "CoffeeBeanImpl [coffeeBeanId=" + coffeeBeanId + ", coffeeBeanName=" + coffeeBeanName + "]";
+		return "CoffeeBeanEntity [coffeeBeanId=" + coffeeBeanId + ", coffeeBeanName=" + coffeeBeanName + "]";
 	}
+
+
 
 
     

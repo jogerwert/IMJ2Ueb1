@@ -4,6 +4,12 @@ import java.util.List;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
 
+/**
+ * Interface zur Kapselung von Service-Objekten fuer Kaffee.
+ * 
+ * @author Michelle Blau, Dominik Goedicke
+ *
+ */
 
 public interface CoffeeService {
 

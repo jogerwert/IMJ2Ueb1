@@ -10,7 +10,7 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.Custom
 /**
  * Die Klasse, welche die Methoden fuer die Datenbankzugriffe enthaelt. Die implementierende
  * Klasse enthaelt jedoch nicht nur die im Interface enthaltenen Methoden.
- * @author christopher
+ * @author christopher, Johannes Gerwert, Michelle Blau, Dominik Goedicke
  *
  */
 public interface CustomerRepository extends 
@@ -33,5 +33,10 @@ public interface CustomerRepository extends
     		String lastName);
 
     
+    /**
+     * Findet einen Kunden anhand seiner Id in der Datenbank.
+     * @param customerId - Die zu suchende Id.
+     * @return Der gefundene Kunde.
+     */
     CustomerEntity findByCustomerId(long customerId);
 }

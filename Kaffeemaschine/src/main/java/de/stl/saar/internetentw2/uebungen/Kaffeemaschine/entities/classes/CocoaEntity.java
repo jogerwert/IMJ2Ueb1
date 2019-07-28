@@ -7,6 +7,12 @@ import javax.persistence.Id;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
 
+/**
+ * Entity-Klasse fuer Kakao. Wird von Hibernate verwendet.
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Entity
 public class CocoaEntity implements Cocoa {
 	private Long cocoaId;
@@ -69,8 +75,11 @@ public class CocoaEntity implements Cocoa {
 
 	@Override
 	public String toString() {
-		return "CocoaImpl [cocoaId=" + cocoaId + ", lowFat=" + lowFat + ", cookieCount=" + cookieCount + "]";
+		return "CocoaEntity [cocoaId=" + cocoaId + ", lowFat=" + lowFat + ", cookieCount=" + cookieCount + "]";
 	}
+
+
+
 
 
 

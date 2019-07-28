@@ -11,6 +11,15 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cus
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CustomerRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CustomerService;
 
+/**
+ * Service-Klasse, welche das Kunden-Repository kapselt.
+ * Es werden ausgewaehlte Methoden zum Laden/Speichern/Loeschen/Pruefen
+ * von Objekten der Datenbank zur Verfuegung gestellt.
+ * 
+ * @author Johannes Gerwert, Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 	@Autowired 
@@ -92,12 +101,23 @@ public class CustomerServiceImpl implements CustomerService {
 		return customers;
 	}
 	
+	
+	/**
+	 * Diese Methode speichert/ueberschreibt Kunden-Objekte in der Datenbank.
+	 * Im Falle der Speicherung wird das Kunden-Objekt mit einer Id ausgestattet.
+	 * Die Id ist der Primaerschluessel.
+	 * @param customer - Kunden-Objekt, dessen customerId veraendert wird, sofern es nicht in der DB existiert.
+	 */
 	@Override
 	public void saveCustomer(Customer customer) {
 		CustomerEntity customerEntity = createCustomerEntity(customer);
 		customerRepository.save(customerEntity);
 	}
 	
+	/**
+	 * Loescht ein uebergebenes Kunden-Objekt aus der Datenbank.
+	 * @param customer - Kunden-Objekt
+	 */
 	@Override
 	public void deleteCustomer(Customer customer) {
 		CustomerEntity customerEntity = createCustomerEntity(customer);

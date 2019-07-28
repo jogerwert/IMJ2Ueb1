@@ -1,5 +1,12 @@
 package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces;
 
+/**
+ * Interface zur eventuellen Kapselung der Kakao-Datenbankobjekte.
+ * 
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
+
 public interface Cocoa {
 
 	Long getCocoaId();

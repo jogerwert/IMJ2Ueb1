@@ -7,6 +7,13 @@ import javax.persistence.Id;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 
+/**
+ * Entity-Klasse fuer Teesorten. Wird von Hibernate verwendet.
+ * 
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Entity
 public class TeaTypeEntity implements TeaType {
 	private Long teaTypeId;
