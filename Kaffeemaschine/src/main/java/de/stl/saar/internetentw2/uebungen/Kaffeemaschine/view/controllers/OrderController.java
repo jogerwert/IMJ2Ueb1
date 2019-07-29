@@ -9,8 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/order")
 public class OrderController {
 	
+	private int orderNumber;
+	
+	private boolean coffeeSaved = false;
+	private boolean teaSaved = false;
+	private boolean cocoaSaved = false;
+	
 	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	public String order(Model model) {
+		
+		
 		
 		return "order";
 	}
