@@ -4,6 +4,13 @@ import java.util.List;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
 
+/**
+ * Interface zur Kapselung von Service-Objekten fuer Kaffeebohnen.
+ * 
+ * @author Michelle Blau, Dominik Goedicke
+ *
+ */
+
 public interface CoffeeBeanService {
 	
 	

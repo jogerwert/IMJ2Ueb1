@@ -12,6 +12,14 @@ import javax.persistence.ManyToOne;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 
+/**
+ * Entity-Klasse fuer Tee. Wird von Hibernate verwendet und hat
+ * eine unidirektionale n:1-Beziehung zu Teesorten.
+ * 
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Entity
 public class TeaEntity implements Tea {
     private Long teaId;
@@ -74,13 +82,9 @@ public class TeaEntity implements Tea {
 
 	@Override
 	public String toString() {
-		return "TeaImpl [teaId=" + teaId + ", sugarCount=" + sugarCount + ", withMilk=" + withMilk + ", teaType="
+		return "TeaEntity [teaId=" + teaId + ", sugarCount=" + sugarCount + ", withMilk=" + withMilk + ", teaType="
 				+ teaType + "]";
 	}
-
-
-
-
 
 
 }

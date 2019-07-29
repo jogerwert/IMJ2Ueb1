@@ -27,6 +27,12 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.OrderRepos
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.TeaRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.TeaTypeRepository;
 
+/**
+ * Initialisiert die Datenbank mit Teesorten und Kaffeebohnen.
+ * 
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
 
 @Component
 public class DatabaseBootstrap implements 

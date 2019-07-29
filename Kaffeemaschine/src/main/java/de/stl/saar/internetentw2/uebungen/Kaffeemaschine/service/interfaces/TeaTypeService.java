@@ -4,6 +4,13 @@ import java.util.List;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 
+/**
+ * Interface zur Kapselung von Service-Objekten fuer Teesorten.
+ * 
+ * @author Michelle Blau, Dominik Goedicke
+ *
+ */
+
 public interface TeaTypeService {
 	
 	

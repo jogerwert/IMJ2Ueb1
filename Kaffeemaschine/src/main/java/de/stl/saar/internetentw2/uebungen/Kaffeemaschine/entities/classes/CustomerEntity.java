@@ -7,6 +7,13 @@ import javax.persistence.Id;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
 
+/**
+ * Entity-Klasse fuer Kunden. Wird von Hibernate verwendet.
+ * 
+ * @author Johannes Gerwert, Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Entity
 public class CustomerEntity implements Customer {
     private Long customerId;
@@ -32,14 +39,14 @@ public class CustomerEntity implements Customer {
 		this.customerId = customerId;
 	}
     
-    @Override
-    public String toString() {
-        return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
-                customerId, firstName, lastName);
-    }
+
 
     @Override
+	public String toString() {
+		return "CustomerEntity [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+
+	@Override
 	public String getFirstName() {
 		return firstName;
 	}

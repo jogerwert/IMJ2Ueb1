@@ -11,6 +11,15 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cof
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CoffeeRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CoffeeService;
 
+/**
+ * Service-Klasse, welche das Kaffee-Repository kapselt.
+ * Es werden ausgewaehlte Methoden zum Laden/Speichern/Loeschen
+ * von Objekten der Datenbank zur Verfuegung gestellt.
+ * 
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Service
 public class CoffeeServiceImpl implements CoffeeService{
 	@Autowired
@@ -26,11 +35,22 @@ public class CoffeeServiceImpl implements CoffeeService{
 		return coffeeList;
 	}
 
+	
+	/**
+	 * Diese Methode speichert/ueberschreibt Kaffee-Objekte in der Datenbank.
+	 * Im Falle der Speicherung wird das Kaffee-Objekt mit einer Id ausgestattet.
+	 * Die Id ist der Primaerschluessel.
+	 * @param coffee - Kaffee-Objekt, dessen coffeeId veraendert wird, sofern es nicht in der DB existiert.
+	 */
 	@Override
 	public void saveCoffee(Coffee coffee) {
 		this.coffeeRepository.save((CoffeeEntity)coffee);
 	}
 
+	/**
+	 * Loescht ein uebergebenes Kaffee-Objekt aus der Datenbank.
+	 * @param coffee - Kaffee-Objekt
+	 */
 	@Override
 	public void deleteCoffee(Coffee coffee) {
 		this.coffeeRepository.delete((CoffeeEntity)coffee);

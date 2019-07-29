@@ -11,6 +11,15 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coc
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CocoaRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CocoaService;
 
+/**
+ * Service-Klasse, welche das Kakao-Repository kapselt.
+ * Es werden ausgewaehlte Methoden zum Laden/Speichern/Loeschen
+ * von Objekten der Datenbank zur Verfuegung gestellt.
+ * 
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Service
 public class CocoaServiceImpl implements CocoaService{
 	@Autowired
@@ -37,12 +46,22 @@ public class CocoaServiceImpl implements CocoaService{
 		return cocoaList;
 	}
 
+	/**
+	 * Diese Methode speichert/ueberschreibt Kakao-Objekte in der Datenbank.
+	 * Im Falle der Speicherung wird das Kakao-Objekt mit einer Id ausgestattet.
+	 * Die Id ist der Primaerschluessel.
+	 * @param cocoa - Kakao-Objekt, dessen cocoaId veraendert wird, sofern es nicht in der DB existiert.
+	 */
 	@Override
 	public void saveCocoa(Cocoa cocoa) {
 		cocoaRepository.save((CocoaEntity)cocoa);
 		
 	}
 
+	/**
+	 * Loescht ein uebergebenes Kakao-Objekt aus der Datenbank.
+	 * @param cocoa - Kakao-Objekt
+	 */
 	@Override
 	public void deleteCocoa(Cocoa cocoa) {
 		cocoaRepository.delete((CocoaEntity)cocoa);

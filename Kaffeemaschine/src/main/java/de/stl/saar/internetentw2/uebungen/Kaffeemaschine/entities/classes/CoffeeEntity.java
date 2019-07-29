@@ -12,6 +12,14 @@ import javax.persistence.ManyToOne;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
 
+/**
+ * Entity-Klasse fuer Kaffee. Wird von Hibernate verwendet und hat
+ * eine unidirektionale 1:n-Beziehung zu Kaffeebohnen.
+ * 
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Entity
 public class CoffeeEntity implements Coffee {
     private Long coffeeId;

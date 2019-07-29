@@ -25,6 +25,19 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cus
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Order;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
 
+/**
+ * Entity-Klasse fuer Bestellungen. Wird von Hibernate verwendet.
+ * Es gibt folgende unidirektionale n:m-Beziehungen:
+ * - OrderEntity --- TeaEntity
+ * - OrderEntity --- CocoaEntity
+ * - OrderEntity --- CoffeeEntity
+ * 
+ * Ebenso gibt es eine unidirektionale n:1-Beziehung zur Klasse CustomerEntity.
+ * 
+ * @author Dominik Goedicke, Michelle Blau
+ *
+ */
+
 @Entity
 public class OrderEntity implements Order {
     private Long orderId;
@@ -125,11 +138,9 @@ public class OrderEntity implements Order {
 
 	@Override
 	public String toString() {
-		return "OrderImpl [orderId=" + orderId + ", date=" + date.getTime() + ", customer=" + customer + ", teaList=" + teaList
+		return "OrderEntity [orderId=" + orderId + ", date=" + date + ", customer=" + customer + ", teaList=" + teaList
 				+ ", coffeeList=" + coffeeList + ", cocoaList=" + cocoaList + "]";
 	}
-
-
 
 
 
