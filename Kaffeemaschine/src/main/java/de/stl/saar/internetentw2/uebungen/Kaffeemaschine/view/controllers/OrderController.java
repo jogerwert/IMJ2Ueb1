@@ -93,7 +93,7 @@ public class OrderController {
 		Boolean coffeeSaved = true;
 		model.addAttribute("coffeeSaved", coffeeSaved);
 		
-		return "menu";
+		return "redirect:/order";
 	}
 	
 	@RequestMapping(value = { "/order/tea" }, method = RequestMethod.POST)
@@ -117,7 +117,7 @@ public class OrderController {
 		model.addAttribute("teaSaved", teaSaved);
 		
 		
-		return "menu";
+		return "redirect:/order";
 	}
 	
 	@RequestMapping(value = { "/order/cocoa" }, method = RequestMethod.POST)
@@ -137,7 +137,7 @@ public class OrderController {
 		Boolean cocoaSaved = true;
 		model.addAttribute("cocoaSaved", cocoaSaved);
 		
-		return "menu";
+		return "redirect:/order";
 	}
 
 	

@@ -61,7 +61,7 @@ public class LoginController {
 			httpSession.setAttribute("currentOrder", order);
 			
 			
-			return "menu";
+			return "redirect:/order";
 		}
 		
 		model.addAttribute("errorMessageLogin", errorMessageLogin);
