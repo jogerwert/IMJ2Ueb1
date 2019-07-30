@@ -27,16 +27,11 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	public Customer createCustomer(String firstName, String lastName) {
 		
-		CustomerEntity customerEntity = new CustomerEntity(firstName, lastName);
-		saveCustomerEntity(customerEntity);
+		Customer customer = new CustomerEntity(firstName, lastName);
 		
-		Customer customer = customerEntity;
 		return customer;
 	}
 	
-	private void saveCustomerEntity(CustomerEntity customerEntity) {
-		customerRepository.save(customerEntity);
-	}
 	
 	private List<Customer> createCustomers(List<CustomerEntity> customerEntities){
 		List<Customer> customers = new ArrayList<Customer>();
@@ -48,24 +43,12 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return customers;
 	}
-	
-	private CustomerEntity createCustomerEntity(Customer customer) {
-		String firstName = customer.getFirstName();
-		String lastName = customer.getLastName();
-		Long customerId = customer.getCustomerId();
-		
-		CustomerEntity customerEntity = new CustomerEntity(firstName, lastName);
-		customerEntity.setCustomerId(customerId);
-		
-		return customerEntity;
-	}
 
 	@Override
 	public List<Customer> findAllCustomers() {
 		List<Customer> customers = new ArrayList<Customer>();
 		
-		for (CustomerEntity customerEntity : customerRepository.findAll()) {
-			Customer customer = customerEntity;
+		for (Customer customer : customerRepository.findAll()) {
 			customers.add(customer);
 		}
 		
@@ -75,21 +58,16 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public Customer findCustomerById(long customerId) {
-		CustomerEntity customerEntity = customerRepository.findByCustomerId(customerId);
-		Customer customer = customerEntity;
+		Customer customer = customerRepository.findByCustomerId(customerId);
 		return customer;
 	}
 	
 	@Override
 	public Customer findCustomerByFirstNameAndLastName(
 			String firstName, String lastName) {
-		CustomerEntity customerEntity = customerRepository.findByFirstNameAndLastName(
-				firstName, lastName);
 		
-		Customer customer = null;
-		if(customerEntity != null) {
-			customer = customerEntity;
-		}
+		Customer customer = customerRepository.findByFirstNameAndLastName(
+				firstName, lastName);
 		
 		return customer;
 	}
@@ -110,8 +88,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 */
 	@Override
 	public void saveCustomer(Customer customer) {
-		CustomerEntity customerEntity = createCustomerEntity(customer);
-		customerRepository.save(customerEntity);
+		customerRepository.save((CustomerEntity) customer);
 	}
 	
 	/**
@@ -120,14 +97,13 @@ public class CustomerServiceImpl implements CustomerService {
 	 */
 	@Override
 	public void deleteCustomer(Customer customer) {
-		CustomerEntity customerEntity = createCustomerEntity(customer);
-		customerRepository.delete(customerEntity);
+		customerRepository.delete((CustomerEntity) customer);
 	}
 
 
 	@Override
 	public boolean doesCustomerExist(String firstName, String lastName) {
-		Customer customer= findCustomerByFirstNameAndLastName(firstName, lastName);
+		Customer customer = findCustomerByFirstNameAndLastName(firstName, lastName);
 		
 		if (customer!=null) {
 			return true;

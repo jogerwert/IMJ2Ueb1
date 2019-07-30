@@ -8,12 +8,14 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Ord
 /**
  * Interface zur Kapselung von Service-Objekten fuer Bestellungen.
  * 
- * @author Michelle Blau, Dominik Goedicke
+ * @author Michelle Blau, Dominik Goedicke, Johannes Gerwert
  *
  */
 
 public interface OrderService {
 
+	Order createEmptyOrder(Customer customer);
+	
 	List<Order> findAllOrders();
 
 	void saveOrder(Order order);

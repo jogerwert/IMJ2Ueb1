@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.TeaType;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.TeaRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaService;
 
@@ -16,7 +17,7 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaS
  * Es werden ausgewaehlte Methoden zum Laden/Speichern/Loeschen
  * von Objekten der Datenbank zur Verfuegung gestellt.
  * 
- * @author Dominik Goedicke, Michelle Blau
+ * @author Dominik Goedicke, Michelle Blau, Johannes Gerwert
  *
  */
 
@@ -24,6 +25,13 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaS
 public class TeaServiceImpl implements TeaService{
 	@Autowired
 	private TeaRepository teaRepository;
+	
+	@Override
+	public Tea createTea(Integer sugarCount, Boolean withMilk, TeaType teaType) {
+		Tea tea = new TeaEntity(sugarCount, withMilk, teaType);
+		
+		return tea;
+	}
 
 	@Override
 	public List<Tea> findAllTeas() {

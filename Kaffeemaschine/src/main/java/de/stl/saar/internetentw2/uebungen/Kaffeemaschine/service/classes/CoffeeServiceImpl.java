@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.CoffeeBean;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CoffeeRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CoffeeService;
 
@@ -16,7 +17,7 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.Coff
  * Es werden ausgewaehlte Methoden zum Laden/Speichern/Loeschen
  * von Objekten der Datenbank zur Verfuegung gestellt.
  * 
- * @author Dominik Goedicke, Michelle Blau
+ * @author Dominik Goedicke, Michelle Blau, Johannes Gerwert
  *
  */
 
@@ -25,6 +26,17 @@ public class CoffeeServiceImpl implements CoffeeService{
 	@Autowired
 	private CoffeeRepository coffeeRepository;
 
+	@Override
+	public Coffee createCoffee(Integer cookieCount, Integer sugarCount,
+			Boolean withDash, Boolean withChocolate, Boolean withMilk,
+			CoffeeBean coffeeBean) {
+		
+		Coffee coffee = new CoffeeEntity(cookieCount, sugarCount, withDash,
+				withMilk, withChocolate, coffeeBean);
+		
+		return coffee;
+	}
+	
 	@Override
 	public List<Coffee> findAllCoffees() {
 		List<Coffee> coffeeList = new ArrayList<Coffee>();	

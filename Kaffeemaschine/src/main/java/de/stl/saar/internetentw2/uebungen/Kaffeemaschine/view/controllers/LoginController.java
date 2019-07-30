@@ -5,12 +5,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Order;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.forms.CustomerForm;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CustomerService;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.OrderService;
 
 @Controller
 public class LoginController {
@@ -18,8 +23,11 @@ public class LoginController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@Value("${error.message}")
-	private String errorMessage;
+	@Autowired
+	private OrderService orderService;
+	
+	@Value("${error.message.login}")
+	private String errorMessageLogin;
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
 	public String showLogin(Model model) {
@@ -31,7 +39,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
-	public String executeLogin(Model model,
+	public String executeLogin(Model model, HttpSession httpSession,
 			@ModelAttribute("customerForm") CustomerForm customerForm) {
 		
 		String firstName = customerForm.getFirstName();
@@ -44,17 +52,19 @@ public class LoginController {
 					.findCustomerByFirstNameAndLastName(firstName, lastName);
 			if (customer == null) {
 				customer = customerService.createCustomer(firstName, lastName);
+				customerService.saveCustomer(customer);
 			}
 			
-			model.addAttribute("currentUser", customer);
+			httpSession.setAttribute("currentUser", customer);
 			
-			//TODO: remove
-			System.out.println(customer.getCustomerId());
+			Order order = orderService.createEmptyOrder(customer);
+			httpSession.setAttribute("currentOrder", order);
 			
-			return "order";
+			
+			return "menu";
 		}
 		
-		model.addAttribute("errorMessage", errorMessage);
+		model.addAttribute("errorMessageLogin", errorMessageLogin);
 		return "login";
 	}
 }

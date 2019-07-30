@@ -10,8 +10,98 @@
 		</div>
 		<h1 th:text="#{label-order}">Order</h1>
 		
-		<p th:text="#{message-current-user(${currentUser.firstName},
-								   ${currentUser.lastName})}" />
+		<p th:text="#{message-current-user(${session.currentUser.firstName},
+								   ${session.currentUser.lastName})}" /> 
+								   
+		<p th:if="${session.currentOrder.orderId}"
+		th:text="#{message-order-number(${session.currentOrder.orderId})}" />
+		
+		<p th:if="${coffeeSaved}"
+		th:text="#{message-coffee-saved}" />
+		
+		<p th:if="${teaSaved}"
+		th:text="#{message-tea-saved}" />
+		
+		<p th:if="${cocoaSaved}"
+		th:text="#{message-cocoa-saved}" />
+								 
+		<h2 th:text="#{label-coffee}">Coffee</h2>
+		
+		 <form th:action="@{/order/coffee}" 
+		 th:object="${coffeeForm}" method="POST">
+			
+			<p th:text="#{label-coffee-bean}" />
+			 <select id="slctCoffeeBean" th:field="*{coffeeBean}">
+			 	<option th:each="cb: ${coffeeBeanList}"
+			 			th:value="${cb.coffeeBeanId}"
+			 			th:text="${cb.coffeeBeanName}" />
+			 </select>
+			
+			<p th:text=#{label-sugar} />
+			<input type="number" th:field="*{sugarCount}" />
+			<p th:text="#{label-pieces}" />
+			
+			<p th:text=#{label-cookies} />
+			<input type="number" th:field="*{cookieCount}" />
+			<p th:text="#{label-pieces}" />
+			
+			<p th:text=#{label-milk} />
+			<input type="checkbox" th:field="*{withMilk}" />
+			<br/>
+			
+			<p th:text=#{label-chocolate} />
+			<input type="checkbox" th:field="*{withChocolate}" />
+			<br/>
+			
+			<p th:text=#{label-dash} />
+			<input type="checkbox" th:field="*{withDash}" />
+			<br/>
+			
+			<input type="submit" th:value="#{button-save-coffee}" />
+		</form>
+		
+		<br/>
+		
+		<h2 th:text="#{label-tea}">Tea</h2>
+		
+		<form th:action="@{/order/tea}"
+		th:object="${teaForm}" method="POST">
+		
+			<p th:text=#{label-tea-type} />
+			 <select id="slctTeaType" th:field="*{teaType}">
+			 	<option th:each="tt: ${teaTypeList}"
+			 			th:value="${tt.teaTypeId}"
+			 			th:text="${tt.teaTypeName}" />
+			 </select>
+			 
+			 <p th:text=#{label-sugar} />
+			 <input type="number" th:field="*{sugarCount}" />
+			 <p th:text="#{label-pieces}" />
+			 
+			 <p th:text=#{label-milk} />
+			 <input type="checkbox" th:field="*{withMilk}" />
+			 <br/>
+			 
+			 <input type="submit" th:value="#{button-save-tea}" />
+		</form>
+		
+		<br/>
+		
+		<h2 th:text="#{label-cocoa}">Cocoa</h2>
+		
+		<form th:action="@{/order/cocoa}"
+		th:object="${cocoaForm}" method="POST">
+		
+			<p th:text=#{label-cookies} />
+			<input type="number" th:field="*{cookieCount}" />
+			<p th:text="#{label-pieces}" />
+			
+			<p th:text=#{label-low-fat} />
+			<input type="checkbox" th:field="*{lowFat}" />
+			<br/>
+			
+			<input type="submit" th:value="#{button-save-cocoa}" />
+		</form>
 		
 		
 		<br/>

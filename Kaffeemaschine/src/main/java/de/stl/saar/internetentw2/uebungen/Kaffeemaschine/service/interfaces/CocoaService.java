@@ -7,12 +7,13 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coc
 /**
  * Interface zur Kapselung von Service-Objekten fuer Kakao.
  * 
- * @author Michelle Blau, Dominik Goedicke
+ * @author Michelle Blau, Dominik Goedicke, Johannes Gerwert
  *
  */
 
 public interface CocoaService {
 	
+	Cocoa createCocoa(Boolean lowFat, Integer cookieCount);
 	
 	List<Cocoa> findByLowFat(Boolean lowFat);
     

@@ -1,14 +1,19 @@
 package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.classes;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderEntity;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Customer;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Order;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.OrderRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.OrderService;
 
@@ -17,7 +22,7 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.Orde
  * Es werden ausgewaehlte Methoden zum Laden/Speichern/Loeschen
  * von Objekten der Datenbank zur Verfuegung gestellt.
  * 
- * @author Dominik Goedicke, Michelle Blau
+ * @author Dominik Goedicke, Michelle Blau, Johannes Gerwert
  *
  */
 
@@ -25,6 +30,21 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.Orde
 public class OrderServiceImpl implements OrderService{
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Override
+	public Order createEmptyOrder(Customer customer) {
+		
+		List<Tea> teaList = new ArrayList<Tea>();
+		List<Coffee> coffeeList = new ArrayList<Coffee>();
+		List<Cocoa> cocoaList = new ArrayList<Cocoa>();
+		
+		Calendar date = new GregorianCalendar();
+		
+		Order order = new OrderEntity(date, customer, teaList, 
+				coffeeList, cocoaList);
+		
+		return order;
+	}
 
 	@Override
 	public List<Order> findAllOrders() {

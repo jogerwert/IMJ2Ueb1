@@ -32,7 +32,8 @@ public class CoffeeEntity implements Coffee {
 
     protected CoffeeEntity() {}
 
-	public CoffeeEntity(Integer cookieCount, Integer sugarCount, Boolean withDash, Boolean withChocolate,
+	public CoffeeEntity(Integer cookieCount, Integer sugarCount, 
+			Boolean withDash, Boolean withChocolate,
 			Boolean withMilk, CoffeeBean coffeeBeanEntity) {
 		super();
 		this.cookieCount = cookieCount;

@@ -16,7 +16,7 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.Coco
  * Es werden ausgewaehlte Methoden zum Laden/Speichern/Loeschen
  * von Objekten der Datenbank zur Verfuegung gestellt.
  * 
- * @author Dominik Goedicke, Michelle Blau
+ * @author Dominik Goedicke, Michelle Blau, Johannes Gerwert
  *
  */
 
@@ -24,6 +24,13 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.Coco
 public class CocoaServiceImpl implements CocoaService{
 	@Autowired
 	private CocoaRepository cocoaRepository;
+	
+	@Override
+	public Cocoa createCocoa(Boolean lowFat, Integer cookieCount) {
+		Cocoa cocoa = new CocoaEntity(lowFat, cookieCount);
+		
+		return cocoa;
+	}
 
 	@Override
 	public List<Cocoa> findByLowFat(Boolean lowFat) {
