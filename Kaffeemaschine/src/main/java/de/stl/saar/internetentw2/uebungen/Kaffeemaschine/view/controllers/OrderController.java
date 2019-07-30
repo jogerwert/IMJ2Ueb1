@@ -50,11 +50,23 @@ public class OrderController {
 	private CocoaService cocoaService;
 	
 	@RequestMapping(value = { "/order" }, method = RequestMethod.GET)
-	public String order(Model model) {
+	public String order(Model model, HttpSession httpSession) {
 		
 		CoffeeForm coffeeForm = new CoffeeForm();
 		TeaForm teaForm = new TeaForm();
 		CocoaForm cocoaForm = new CocoaForm();
+		
+		Boolean coffeeSaved = (Boolean) httpSession.getAttribute("coffeeSaved");
+		model.addAttribute("coffeeSaved", coffeeSaved);
+		httpSession.removeAttribute("coffeeSaved");
+		
+		Boolean teaSaved = (Boolean) httpSession.getAttribute("teaSaved");
+		model.addAttribute("teaSaved", teaSaved);
+		httpSession.removeAttribute("teaSaved");
+		
+		Boolean cocoaSaved = (Boolean) httpSession.getAttribute("cocoaSaved");
+		model.addAttribute("cocoaSaved", cocoaSaved);
+		httpSession.removeAttribute("cocoaSaved");
 		
 		model.addAttribute("coffeeForm", coffeeForm);
 		model.addAttribute("teaForm", teaForm);
@@ -91,7 +103,7 @@ public class OrderController {
 		currentOrder.getCoffeeList().add(coffee);
 		orderService.saveOrder(currentOrder);
 		Boolean coffeeSaved = true;
-		model.addAttribute("coffeeSaved", coffeeSaved);
+		httpSession.setAttribute("coffeeSaved", coffeeSaved);
 		
 		return "redirect:/order";
 	}
@@ -114,7 +126,7 @@ public class OrderController {
 		currentOrder.getTeaList().add(tea);
 		orderService.saveOrder(currentOrder);
 		Boolean teaSaved = true;
-		model.addAttribute("teaSaved", teaSaved);
+		httpSession.setAttribute("teaSaved", teaSaved);
 		
 		
 		return "redirect:/order";
@@ -135,7 +147,7 @@ public class OrderController {
 		currentOrder.getCocoaList().add(cocoa);
 		orderService.saveOrder(currentOrder);
 		Boolean cocoaSaved = true;
-		model.addAttribute("cocoaSaved", cocoaSaved);
+		httpSession.setAttribute("cocoaSaved", cocoaSaved);
 		
 		return "redirect:/order";
 	}
