@@ -3,7 +3,6 @@ package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.Bootstrap;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -11,13 +10,10 @@ import org.springframework.stereotype.Component;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeBeanEntity;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CoffeeEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CustomerEntity;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.OrderEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaTypeEntity;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
-import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CocoaRepository;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.CoffeeBeanRepository;
@@ -95,8 +91,6 @@ public class DatabaseBootstrap implements
 		CoffeeBeanEntity coffeeBeanEntity = new CoffeeBeanEntity("GUGGUGS");
 		coffeeBeanRepository.save(coffeeBeanEntity);
 		
-		CoffeeEntity coffeeEntity = new CoffeeEntity(5, 5, true, true, true, coffeeBeanEntity);
-		coffeeRepository.save(coffeeEntity);
 
 		TeaTypeEntity teaTypeEntity= new TeaTypeEntity("ERDBEER");
 		teaTypeRepository.save(teaTypeEntity);
@@ -111,23 +105,33 @@ public class DatabaseBootstrap implements
 		
 		List <Tea> teaEntityList= new ArrayList<Tea>();
 		teaEntityList.add(teaEntity);
-		List <Coffee> coffeeEntityList= new ArrayList<Coffee>();
-		coffeeEntityList.add(coffeeEntity);
+
 		List <Cocoa> cocoaEntityList= new ArrayList<Cocoa>();
 		cocoaEntityList.add(cocoaEntity);
 		
-		OrderEntity orderEntity = new OrderEntity(date, customerEntity, teaEntityList, coffeeEntityList, cocoaEntityList);
-		System.out.println(orderEntity);
-		orderRepository.save(orderEntity);
-		System.out.println(orderEntity);
+//
+//		List<CoffeeBean> beans= new ArrayList<CoffeeBean>();
+//		
+//		CoffeeBean b1;
+//		CoffeeBean b2;
+//		b1 = coffeeBeanRepository.findByCoffeeBeanId(coffeeBeanEntity.getCoffeeBeanId());
+//		b2 = coffeeBeanRepository.findByCoffeeBeanId(coffeeBeanEntity.getCoffeeBeanId());
+//
+//		CoffeeEntity coffeeEntity1 = new CoffeeEntity(5, 5, false, true, true, b1);
+//		coffeeRepository.save(coffeeEntity1);
+//		CoffeeEntity coffeeEntity2 = new CoffeeEntity(5, 5, false, true, true, b2);
+//		coffeeRepository.save(coffeeEntity2);
+//		
+//		List <Coffee> coffeeEntityList= new ArrayList<Coffee>();
+//		coffeeEntityList.add(coffeeEntity1);
+//		coffeeEntityList.add(coffeeEntity2);
+//		
+//		OrderEntity orderEntity = new OrderEntity(date, customerEntity, teaEntityList, coffeeEntityList, cocoaEntityList);
+//		
+//		orderRepository.save(orderEntity);
+//		orderRepository.save(orderEntity);
 		
-		cocoaEntity.setCookieCount(50000);
-		orderEntity.getCocoaList().get(0).setCookieCount(500000);
 		
-		orderRepository.save(orderEntity);
-		System.out.println(orderRepository.findByCustomer(customerEntity));
-		
-		System.out.println(orderRepository.findByOrderId(orderEntity.getOrderId()));
-		System.out.println(orderRepository.findByDate(date));
+
 	}
 }

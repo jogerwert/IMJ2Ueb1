@@ -93,7 +93,7 @@ public class OrderEntity implements Order {
 	}
 
 
-	@ManyToMany(targetEntity = TeaEntity.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = TeaEntity.class,  fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "teaId")
 	public List<Tea> getTeaList() {
@@ -107,7 +107,7 @@ public class OrderEntity implements Order {
 	}
 
 
-	@ManyToMany(targetEntity = CoffeeEntity.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = CoffeeEntity.class,  fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "coffeeId")
 	public List<Coffee> getCoffeeList() {
