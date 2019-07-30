@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="ISO-8859-1">
 		<title th:text="#{title-order}">Order</title>
 	</head>
 	<body>
@@ -24,6 +24,10 @@
 		
 		<p th:if="${cocoaSaved}"
 		th:text="#{message-cocoa-saved}" />
+		
+		<a th:if="${session.currentOrder.orderId}"
+		th:href="@{/summary}"
+		th:text="#{link-summary}">Summary</a>
 								 
 		<h2 th:text="#{label-coffee}">Coffee</h2>
 		

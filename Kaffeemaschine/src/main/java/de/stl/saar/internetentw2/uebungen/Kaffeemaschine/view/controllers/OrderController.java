@@ -151,6 +151,23 @@ public class OrderController {
 		
 		return "redirect:/order";
 	}
-
+	
+	@RequestMapping(value = { "/summary" }, method = RequestMethod.GET)
+	public String showSummary(Model model, HttpSession httpSession) {
+		
+		Order currentOrder = (Order) httpSession.getAttribute("currentOrder");
+		
+		List<List<String>> listList = orderService.summarizeOrder(currentOrder);
+		
+		List<String> teaSummaryList = listList.get(0);
+		List<String> coffeeSummaryList = listList.get(1);
+		List<String> cocoaSummaryList = listList.get(2);
+		
+		model.addAttribute("teaSummaryList", teaSummaryList);
+		model.addAttribute("coffeeSummaryList", coffeeSummaryList);
+		model.addAttribute("cocoaSummaryList", cocoaSummaryList);
+		
+		return "summary";
+	}
 	
 }

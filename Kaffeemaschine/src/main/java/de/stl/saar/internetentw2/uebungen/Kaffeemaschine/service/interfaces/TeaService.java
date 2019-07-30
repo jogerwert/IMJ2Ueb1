@@ -23,6 +23,7 @@ public interface TeaService {
 	void deleteTea(Tea tea);
 
 	Tea findTeaById(long teaId);
-
+	
+	String summarizeTea(Tea tea);
 
 }

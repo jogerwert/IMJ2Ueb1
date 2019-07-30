@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+	<title th:text="#{title-summary}">Summary</title>
+	</head>
+	<body>
+		<div th:include="fragments/header::title">
+		
+		</div>
+		<h1 th:text="#{label-summary}">Summary</h1>
+		
+		<div th:if="${not #lists.isEmpty(coffeeSummaryList)}">
+			<h2 th:text="#{label-coffee}">Coffee</h2>
+			
+			<ul th:each="cofSum : ${coffeeSummaryList}">
+				<li th:text="${cofSum}"></li>
+			</ul>
+		</div>
+		
+		<div th:if="${not #lists.isEmpty(teaSummaryList)}">
+			<h2 th:text="#{label-tea}">Tea</h2>
+			
+			<ul th:each="teaSum : ${teaSummaryList}">
+				<li th:text="${teaSum}"></li>
+			</ul>
+		</div>
+		
+		<div th:if="${not #lists.isEmpty(cocoaSummaryList)}">
+			<h2 th:text="#{label-cocoa}">Cocoa</h2>
+			
+			<ul th:each="cocSum : ${cocoaSummaryList}">
+				<li th:text="${cocSum}"></li>
+			</ul>
+		</div>
+		
+		<div th:include="fragments/footer::linklist">
+		
+		</div>
+		
+	</body>
+</html>

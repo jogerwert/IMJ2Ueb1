@@ -25,6 +25,8 @@ public interface OrderService {
 	Order findOrderById(long orderId);
 	
 	List<Order> findOrdersByCustomer(Customer customerEntity);
+	
+	List<List<String>> summarizeOrder(Order order);
 
 
 }

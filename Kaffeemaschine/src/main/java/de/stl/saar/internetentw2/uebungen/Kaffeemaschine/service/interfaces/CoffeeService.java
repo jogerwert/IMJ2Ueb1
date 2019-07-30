@@ -25,6 +25,7 @@ public interface CoffeeService {
 	void deleteCoffee(Coffee coffee);
 
 	Coffee findCoffeeById(long coffeeId);
-
-
+	
+	String summarizeCoffee(Coffee coffee);
+	
 }
