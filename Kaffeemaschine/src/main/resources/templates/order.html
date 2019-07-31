@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title th:text="#{title-order}">Order</title>
-		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 	</head>
 	<body>
 		<div th:include="fragments/header::title">
@@ -43,12 +42,12 @@
 			 </select>
 			
 			<p th:text=#{label-sugar} />
-			<input type="number" th:field="*{sugarCount}" />
-			<p th:text="#{label-pieces}" />
+			<input  type="number" th:field="*{sugarCount}" />
+			<label th:text="#{label-pieces}" ></label>
 			
 			<p th:text=#{label-cookies} />
-			<input type="number" th:field="*{cookieCount}" />
-			<p th:text="#{label-pieces}" />
+			<input  type="number" th:field="*{cookieCount}" />
+			<label th:text="#{label-pieces}" ></label>
 			
 			<p th:text=#{label-milk} />
 			<input type="checkbox" th:field="*{withMilk}" />
@@ -67,6 +66,11 @@
 		
 		<br/>
 		
+		<div th:if="${errorMessageCoffeeNegative}" th:utext="${errorMessageCoffeeNegative}"
+		style="color:red;font-style:italic;">ORDER-ERROR</div>
+		
+		<br/>
+		
 		<h2 th:text="#{label-tea}">Tea</h2>
 		
 		<form th:action="@{/order/tea}"
@@ -81,7 +85,7 @@
 			 
 			 <p th:text=#{label-sugar} />
 			 <input type="number" th:field="*{sugarCount}" />
-			 <p th:text="#{label-pieces}" />
+			 <label th:text="#{label-pieces}" ></label>
 			 
 			 <p th:text=#{label-milk} />
 			 <input type="checkbox" th:field="*{withMilk}" />
@@ -92,6 +96,11 @@
 		
 		<br/>
 		
+		<div th:if="${errorMessageTeaNegative}" th:utext="${errorMessageTeaNegative}"
+		style="color:red;font-style:italic;">ORDER-ERROR</div>
+		
+		<br/>
+		
 		<h2 th:text="#{label-cocoa}">Cocoa</h2>
 		
 		<form th:action="@{/order/cocoa}"
@@ -99,7 +108,7 @@
 		
 			<p th:text=#{label-cookies} />
 			<input type="number" th:field="*{cookieCount}" />
-			<p th:text="#{label-pieces}" />
+			<label th:text="#{label-pieces}" ></label>
 			
 			<p th:text=#{label-low-fat} />
 			<input type="checkbox" th:field="*{lowFat}" />
@@ -108,8 +117,13 @@
 			<input type="submit" th:value="#{button-save-cocoa}" />
 		</form>
 		
+		<br/>
+		
+		<div th:if="${errorMessageCocoaNegative}" th:utext="${errorMessageCocoaNegative}"
+		style="color:red;font-style:italic;">ORDER-ERROR</div>
 		
 		<br/>
+		
 		<div th:include="fragments/footer::linklist">
 		
 		</div>

@@ -5,12 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cocoa;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Coffee;
@@ -55,6 +57,9 @@ public class OrderController {
 	@Autowired
 	private CocoaService cocoaService;
 	
+	@Value("${error.message.negative}")
+	private String errorMessageNegative;
+	
 	/**
 	 * Verwaltet GET-Anfragen auf die order-Adresse.
 	 * Erstellt von der view benoetigte Objekte und schreibt diese in das model.
@@ -69,18 +74,6 @@ public class OrderController {
 		CoffeeForm coffeeForm = new CoffeeForm();
 		TeaForm teaForm = new TeaForm();
 		CocoaForm cocoaForm = new CocoaForm();
-		
-		Boolean coffeeSaved = (Boolean) httpSession.getAttribute("coffeeSaved");
-		model.addAttribute("coffeeSaved", coffeeSaved);
-		httpSession.removeAttribute("coffeeSaved");
-		
-		Boolean teaSaved = (Boolean) httpSession.getAttribute("teaSaved");
-		model.addAttribute("teaSaved", teaSaved);
-		httpSession.removeAttribute("teaSaved");
-		
-		Boolean cocoaSaved = (Boolean) httpSession.getAttribute("cocoaSaved");
-		model.addAttribute("cocoaSaved", cocoaSaved);
-		httpSession.removeAttribute("cocoaSaved");
 		
 		model.addAttribute("coffeeForm", coffeeForm);
 		model.addAttribute("teaForm", teaForm);
@@ -107,6 +100,7 @@ public class OrderController {
 	 */
 	@RequestMapping(value = { "/order/coffee" }, method = RequestMethod.POST)
 	public String saveCoffee(Model model, HttpSession httpSession,
+			RedirectAttributes redirectAttributes,
 			@ModelAttribute("coffeeForm") CoffeeForm coffeeForm) {
 		
 		Order currentOrder = (Order) httpSession.getAttribute("currentOrder");
@@ -118,6 +112,11 @@ public class OrderController {
 		Boolean withMilk = new Boolean(coffeeForm.isWithMilk());
 		long coffeeBeanId = coffeeForm.getCoffeeBean();
 		
+		if(cookieCount < 0 || sugarCount < 0) {
+			redirectAttributes.addFlashAttribute("errorMessageCoffeeNegative", errorMessageNegative);
+			return "redirect:/order";
+		}
+		
 		CoffeeBean coffeeBean = coffeeBeanService.findByCoffeeBeanId(coffeeBeanId);
 		
 		Coffee coffee = coffeeService.createCoffee(cookieCount, sugarCount, 
@@ -127,7 +126,7 @@ public class OrderController {
 		currentOrder.getCoffeeList().add(coffee);
 		orderService.saveOrder(currentOrder);
 		Boolean coffeeSaved = true;
-		httpSession.setAttribute("coffeeSaved", coffeeSaved);
+		redirectAttributes.addFlashAttribute("coffeeSaved", coffeeSaved);
 		
 		return "redirect:/order";
 	}
@@ -143,6 +142,7 @@ public class OrderController {
 	 */
 	@RequestMapping(value = { "/order/tea" }, method = RequestMethod.POST)
 	public String saveTea(Model model, HttpSession httpSession,
+			RedirectAttributes redirectAttributes,
 			@ModelAttribute("teaForm") TeaForm teaForm) {
 		
 		Order currentOrder = (Order) httpSession.getAttribute("currentOrder");
@@ -150,6 +150,11 @@ public class OrderController {
 		Integer sugarCount = new Integer(teaForm.getSugarCount());
 		Boolean withMilk = new Boolean(teaForm.isWithMilk());
 		long teaTypeId = teaForm.getTeaType();
+		
+		if(sugarCount < 0) {
+			redirectAttributes.addFlashAttribute("errorMessageTeaNegative", errorMessageNegative);
+			return"redirect:/order";
+		}
 		
 		TeaType teaType = teaTypeService.findByTeaTypeId(teaTypeId);
 		
@@ -159,7 +164,7 @@ public class OrderController {
 		currentOrder.getTeaList().add(tea);
 		orderService.saveOrder(currentOrder);
 		Boolean teaSaved = true;
-		httpSession.setAttribute("teaSaved", teaSaved);
+		redirectAttributes.addFlashAttribute("teaSaved", teaSaved);
 		
 		
 		return "redirect:/order";
@@ -177,6 +182,7 @@ public class OrderController {
 	 */
 	@RequestMapping(value = { "/order/cocoa" }, method = RequestMethod.POST)
 	public String saveCocoa(Model model, HttpSession httpSession,
+			RedirectAttributes redirectAttributes,
 			@ModelAttribute("cocoaForm") CocoaForm cocoaForm) {
 		
 		Order currentOrder = (Order) httpSession.getAttribute("currentOrder");
@@ -184,13 +190,18 @@ public class OrderController {
 		Boolean lowFat = new Boolean(cocoaForm.isLowFat());
 		Integer cookieCount = new Integer(cocoaForm.getCookieCount());
 		
+		if(cookieCount < 0) {
+			redirectAttributes.addFlashAttribute("errorMessageCocoaNegative", errorMessageNegative);
+			return "redirect:/order";
+		}
+		
 		Cocoa cocoa = cocoaService.createCocoa(lowFat, cookieCount);
 		cocoaService.saveCocoa(cocoa);
 		
 		currentOrder.getCocoaList().add(cocoa);
 		orderService.saveOrder(currentOrder);
 		Boolean cocoaSaved = true;
-		httpSession.setAttribute("cocoaSaved", cocoaSaved);
+		redirectAttributes.addFlashAttribute("cocoaSaved", cocoaSaved);
 		
 		return "redirect:/order";
 	}

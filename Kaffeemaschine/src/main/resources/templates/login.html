@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title th:text="#{title-login}">Login</title>
-		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 	</head>
 	<body>
 		<div th:include="fragments/header::title">
@@ -26,9 +25,7 @@
 		 <br/>
 		 
 		 <div th:if="${errorMessageLogin}" th:utext="${errorMessageLogin}"
-		 style="color:red;font-style:italic;">
-		 LOGIN-ERROR
-		 </div>
+		 style="color:red;font-style:italic;">LOGIN-ERROR</div>
 		 
 		 <br/>
 		<div th:include="fragments/footer::linklist">
