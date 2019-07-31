@@ -28,6 +28,12 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.Orde
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaService;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaTypeService;
 
+/**
+ * SpringMVC-Controller, der die Bestellungs-Seiten verwaltet.
+ * 
+ * @author Johannes Gerwert
+ *
+ */
 @Controller
 public class OrderController {
 	
@@ -49,6 +55,14 @@ public class OrderController {
 	@Autowired
 	private CocoaService cocoaService;
 	
+	/**
+	 * Verwaltet GET-Anfragen auf die order-Adresse.
+	 * Erstellt von der view benoetigte Objekte und schreibt diese in das model.
+	 * 
+	 * @param model Das von Spring uebergebene Model-Objekt
+	 * @param httpSession Die Session zur laengerfristigen Speicherung von Objekten
+	 * @return Die html-Seite, die nach Ausfuehrung dieser Methode aufgerufen wird
+	 */
 	@RequestMapping(value = { "/order" }, method = RequestMethod.GET)
 	public String order(Model model, HttpSession httpSession) {
 		
@@ -81,6 +95,16 @@ public class OrderController {
 		return "order";
 	}
 	
+	/**
+	 * Verwaltet POST-Anfragen, wenn ein Kaffee bestellt wurde.
+	 * Empfaengt Nutzereingaben, die im Form uebergeben wurden und verarbeitet diese weiter.
+	 * Hier werden Kaffees erstellt und gespeichert.
+	 * 
+	 * @param model Das von Spring uebergebene Model-Objekt
+	 * @param httpSession Die Session zur laengerfristigen Speicherung von Objekten
+	 * @param coffeeForm Nutzereingabe die fuer die Kaffee-Erstellung relevante Daten enthalt
+	 * @return Weiterleitung zur Bestellungs-Ansicht
+	 */
 	@RequestMapping(value = { "/order/coffee" }, method = RequestMethod.POST)
 	public String saveCoffee(Model model, HttpSession httpSession,
 			@ModelAttribute("coffeeForm") CoffeeForm coffeeForm) {
@@ -107,7 +131,16 @@ public class OrderController {
 		
 		return "redirect:/order";
 	}
-	
+	/**
+	 * Verwaltet POST-Anfragen, wenn ein Tee bestellt wurde.
+	 * Empfaengt Nutzereingaben, die im Form uebergeben wurden und verarbeitet diese weiter.
+	 * Hier werden Tees erstellt und gespeichert.
+	 * 
+	 * @param model Das von Spring uebergebene Model-Objekt
+	 * @param httpSession Die Session zur laengerfristigen Speicherung von Objekten
+	 * @param coffeeForm Nutzereingabe die fuer die Tee-Erstellung relevante Daten enthalt
+	 * @return Weiterleitung zur Bestellungs-Ansicht
+	 */
 	@RequestMapping(value = { "/order/tea" }, method = RequestMethod.POST)
 	public String saveTea(Model model, HttpSession httpSession,
 			@ModelAttribute("teaForm") TeaForm teaForm) {
@@ -132,6 +165,16 @@ public class OrderController {
 		return "redirect:/order";
 	}
 	
+	/**
+	 * Verwaltet POST-Anfragen, wenn ein Kakao bestellt wurde.
+	 * Empfaengt Nutzereingaben, die im Form uebergeben wurden und verarbeitet diese weiter.
+	 * Hier werden Kakaos erstellt und gespeichert.
+	 * 
+	 * @param model Das von Spring uebergebene Model-Objekt
+	 * @param httpSession Die Session zur laengerfristigen Speicherung von Objekten
+	 * @param coffeeForm Nutzereingabe die fuer die Kakao-Erstellung relevante Daten enthalt
+	 * @return Weiterleitung zur Bestellungs-Ansicht
+	 */
 	@RequestMapping(value = { "/order/cocoa" }, method = RequestMethod.POST)
 	public String saveCocoa(Model model, HttpSession httpSession,
 			@ModelAttribute("cocoaForm") CocoaForm cocoaForm) {
@@ -151,6 +194,31 @@ public class OrderController {
 		
 		return "redirect:/order";
 	}
-
+	
+	/**
+	 * Verwaltet GET-Anfragen auf die summary-Adresse.
+	 * Erstellt von der view benoetigte Objekte und schreibt diese in das model.
+	 * 
+	 * @param model Das von Spring uebergebene Model-Objekt
+	 * @param httpSession Die Session zur laengerfristigen Speicherung von Objekten
+	 * @return Die html-Seite, die nach Ausfuehrung dieser Methode aufgerufen wird
+	 */
+	@RequestMapping(value = { "/summary" }, method = RequestMethod.GET)
+	public String showSummary(Model model, HttpSession httpSession) {
+		
+		Order currentOrder = (Order) httpSession.getAttribute("currentOrder");
+		
+		List<List<String>> listList = orderService.summarizeOrder(currentOrder);
+		
+		List<String> teaSummaryList = listList.get(0);
+		List<String> coffeeSummaryList = listList.get(1);
+		List<String> cocoaSummaryList = listList.get(2);
+		
+		model.addAttribute("teaSummaryList", teaSummaryList);
+		model.addAttribute("coffeeSummaryList", coffeeSummaryList);
+		model.addAttribute("cocoaSummaryList", cocoaSummaryList);
+		
+		return "summary";
+	}
 	
 }

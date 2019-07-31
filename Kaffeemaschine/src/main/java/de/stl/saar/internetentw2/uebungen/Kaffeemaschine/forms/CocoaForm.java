@@ -1,5 +1,12 @@
 package de.stl.saar.internetentw2.uebungen.Kaffeemaschine.forms;
 
+/**
+ * Vereinfachte Darstellung von Cocoa-Objekten.
+ * Wird in html-forms benoetigt.
+ * 
+ * @author Johannes Gerwert
+ *
+ */
 public class CocoaForm {
 
 	private boolean lowFat;

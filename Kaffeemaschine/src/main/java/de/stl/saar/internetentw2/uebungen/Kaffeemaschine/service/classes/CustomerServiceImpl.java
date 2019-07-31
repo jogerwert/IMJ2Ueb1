@@ -16,7 +16,7 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.Cust
  * Es werden ausgewaehlte Methoden zum Laden/Speichern/Loeschen/Pruefen
  * von Objekten der Datenbank zur Verfuegung gestellt.
  * 
- * @author Johannes Gerwert, Dominik Goedicke, Michelle Blau
+ * @author Dominik Goedicke, Michelle Blau, Johannes Gerwert
  *
  */
 

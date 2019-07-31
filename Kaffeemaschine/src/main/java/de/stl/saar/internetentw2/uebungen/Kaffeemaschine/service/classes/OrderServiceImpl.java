@@ -15,7 +15,10 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Cus
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Order;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.interfaces.Tea;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.repositories.OrderRepository;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CocoaService;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CoffeeService;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.OrderService;
+import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaService;
 
 /**
  * Service-Klasse, welche das Bestellung-Repository kapselt.
@@ -30,6 +33,15 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.Orde
 public class OrderServiceImpl implements OrderService{
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private TeaService teaService;
+	
+	@Autowired
+	private CoffeeService coffeeService;
+	
+	@Autowired
+	private CocoaService cocoaService;
 	
 	@Override
 	public Order createEmptyOrder(Customer customer) {
@@ -90,7 +102,41 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 
-	
+	/**
+	 * Erstellt eine Liste von Listen, die Zusammenfassungen der Elemente der Bestellung
+	 * beinhalten.
+	 * @param order - Bestellungs-Objekt, das zusammengefasst werden soll
+	 */
+	@Override
+	public List<List<String>> summarizeOrder(Order order){
+		List<Tea> teaList = order.getTeaList();
+		List<Coffee> coffeeList = order.getCoffeeList();
+		List<Cocoa> cocoaList = order.getCocoaList();
+		
+		List<String> teaSummaryList = new ArrayList<String>();
+		List<String> coffeeSummaryList = new ArrayList<String>();
+		List<String> cocoaSummaryList = new ArrayList<String>();
+		
+		List<List<String>> result = new ArrayList<List<String>>();
+		
+		for(Tea tea : teaList) {
+			teaSummaryList.add(teaService.summarizeTea(tea));
+		}
+		
+		for(Coffee coffee : coffeeList) {
+			coffeeSummaryList.add(coffeeService.summarizeCoffee(coffee));
+		}
+		
+		for(Cocoa cocoa : cocoaList) {
+			cocoaSummaryList.add(cocoaService.summarizeCocoa(cocoa));
+		}
+		
+		result.add(teaSummaryList);
+		result.add(coffeeSummaryList);
+		result.add(cocoaSummaryList);
+		
+		return result;
+	}
 	
 	
 

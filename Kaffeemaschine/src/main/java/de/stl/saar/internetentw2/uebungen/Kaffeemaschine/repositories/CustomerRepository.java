@@ -8,9 +8,9 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.Custom
 
 
 /**
- * Die Klasse, welche die Methoden fuer die Datenbankzugriffe enthaelt. Die implementierende
- * Klasse enthaelt jedoch nicht nur die im Interface enthaltenen Methoden.
- * @author christopher, Johannes Gerwert, Michelle Blau, Dominik Goedicke
+ * Repository-Klasse fuer die Benutzer-Datenbankobjekte.
+ * 
+ * @author Michelle Blau, Dominik Goedicke
  *
  */
 public interface CustomerRepository extends 

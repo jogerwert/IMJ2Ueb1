@@ -24,6 +24,10 @@
 		
 		<p th:if="${cocoaSaved}"
 		th:text="#{message-cocoa-saved}" />
+		
+		<a th:if="${session.currentOrder.orderId}"
+		th:href="@{/summary}"
+		th:text="#{link-summary}">Summary</a>
 								 
 		<h2 th:text="#{label-coffee}">Coffee</h2>
 		

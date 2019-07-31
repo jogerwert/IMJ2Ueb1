@@ -24,4 +24,6 @@ public interface CocoaService {
 	void saveCocoa(Cocoa cocoa);
 	
 	void deleteCocoa(Cocoa cocoa);
+	
+	String summarizeCocoa(Cocoa cocoa);
 }

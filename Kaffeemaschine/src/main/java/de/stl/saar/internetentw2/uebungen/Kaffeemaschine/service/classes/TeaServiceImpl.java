@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.TeaEntity;
@@ -25,6 +26,18 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.TeaS
 public class TeaServiceImpl implements TeaService{
 	@Autowired
 	private TeaRepository teaRepository;
+	
+	@Value("${summary.tea-type}")
+	private String summaryTeaType;
+	
+	@Value("${summary.sugar}")
+	private String summarySugar;
+	
+	@Value("${summary.pieces}")
+	private String summaryPieces;
+	
+	@Value("${summary.with-milk}")
+	private String summaryWithMilk;
 	
 	@Override
 	public Tea createTea(Integer sugarCount, Boolean withMilk, TeaType teaType) {
@@ -72,7 +85,25 @@ public class TeaServiceImpl implements TeaService{
 		return teaEntity;
 	}
 	
-	
+	/**
+	 * Erstellt einen String, der das Tee-Objekt zusammenfassend darstellt.
+	 * @param tea - Tee-Objekt, das zusammengefasst werden soll
+	 */
+	@Override
+	public String summarizeTea(Tea tea) {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(summaryTeaType + ": " + tea.getTeaTypeEntity().getTeaTypeName());
+		
+		if (tea.getWithMilk()) {
+			sb.append(" - " + summaryWithMilk);
+		}
+		sb.append(" - " + summarySugar + ": " + tea.getSugarCount() + " " 
+		+ summaryPieces);
+		
+		String result = sb.toString();
+		return result;
+	}
 	
 
 }

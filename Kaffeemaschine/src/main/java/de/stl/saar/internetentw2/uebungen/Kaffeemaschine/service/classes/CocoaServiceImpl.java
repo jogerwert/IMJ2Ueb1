@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.entities.classes.CocoaEntity;
@@ -24,6 +25,17 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.Coco
 public class CocoaServiceImpl implements CocoaService{
 	@Autowired
 	private CocoaRepository cocoaRepository;
+	
+	@Value("${summary.fat-free}")
+	private String summaryFatFree;
+	
+	@Value("${summary.cookies}")
+	private String summaryCookies;
+	
+	@Value("${summary.pieces}")
+	private String summaryPieces;
+	
+	
 	
 	@Override
 	public Cocoa createCocoa(Boolean lowFat, Integer cookieCount) {
@@ -73,6 +85,25 @@ public class CocoaServiceImpl implements CocoaService{
 	public void deleteCocoa(Cocoa cocoa) {
 		cocoaRepository.delete((CocoaEntity)cocoa);
 		
+	}
+	
+	/**
+	 * Erstellt einen String, der das Kakao-Objekt zusammenfassend darstellt.
+	 * @param cocoa - Kakao-Objekt, das zusammengefasst werden soll
+	 */
+	@Override
+	public String summarizeCocoa(Cocoa cocoa) {
+		StringBuilder sb = new StringBuilder();
+		
+		if(cocoa.getLowFat()) {
+			sb.append(summaryFatFree + " - ");
+		}
+		sb.append(summaryCookies + ": " + cocoa.getCookieCount() + " "
+		+ summaryPieces);
+		
+		
+		String result = sb.toString();
+		return result;
 	}
 
 
