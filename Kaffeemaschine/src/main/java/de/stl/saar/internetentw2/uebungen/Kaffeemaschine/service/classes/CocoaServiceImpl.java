@@ -87,6 +87,10 @@ public class CocoaServiceImpl implements CocoaService{
 		
 	}
 	
+	/**
+	 * Erstellt einen String, der das Kakao-Objekt zusammenfassend darstellt.
+	 * @param cocoa - Kakao-Objekt, das zusammengefasst werden soll
+	 */
 	@Override
 	public String summarizeCocoa(Cocoa cocoa) {
 		StringBuilder sb = new StringBuilder();

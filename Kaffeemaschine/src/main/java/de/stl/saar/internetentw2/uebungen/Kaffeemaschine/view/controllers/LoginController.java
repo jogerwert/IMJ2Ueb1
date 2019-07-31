@@ -17,6 +17,12 @@ import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.forms.CustomerForm;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.CustomerService;
 import de.stl.saar.internetentw2.uebungen.Kaffeemaschine.service.interfaces.OrderService;
 
+/**
+ * SpringMVC-Controller, der die Login-Seiten verwaltet.
+ * 
+ * @author Johannes Gerwert
+ *
+ */
 @Controller
 public class LoginController {
 	
@@ -29,6 +35,13 @@ public class LoginController {
 	@Value("${error.message.login}")
 	private String errorMessageLogin;
 
+	/**
+	 * Verwaltet GET-Anfragen auf die basis- und die login-Adresse.
+	 * Erstellt von der view benoetigte Objekte und schreibt diese in das model.
+	 * 
+	 * @param model Das von Spring uebergebene Model-Objekt
+	 * @return Die html-Seite, die nach Ausfuehrung dieser Methode aufgerufen wird
+	 */
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
 	public String showLogin(Model model) {
 		
@@ -38,6 +51,16 @@ public class LoginController {
 		return "login";
 	}
 	
+	/**
+	 * Verwaltet POST-Anfragen auf die login-Adresse.
+	 * Empfaengt Nutzereingaben die im Form uebergeben wurden und verarbeitet diese weiter.
+	 * Hier werden die Login-Daten ueberprueft und der Login ausgefuehrt.
+	 * 
+	 * @param model Das von Spring uebergebene Model-Objekt
+	 * @param httpSession Die Session zur laengerfristigen Speicherung von Objekten
+	 * @param customerForm Nutzereingabe die fuer den Login relevante Daten enthaelt
+	 * @return Bei erfolgreichem Login wird man zur Bestellung weitergeleitet, ansonsten bleibt man im login-Bildschirm
+	 */
 	@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
 	public String executeLogin(Model model, HttpSession httpSession,
 			@ModelAttribute("customerForm") CustomerForm customerForm) {

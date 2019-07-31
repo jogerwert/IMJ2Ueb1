@@ -102,6 +102,12 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 
+	/**
+	 * Erstellt eine Liste von Listen, die Zusammenfassungen der Elemente der Bestellung
+	 * beinhalten.
+	 * @param order - Bestellungs-Objekt, das zusammengefasst werden soll
+	 */
+	@Override
 	public List<List<String>> summarizeOrder(Order order){
 		List<Tea> teaList = order.getTeaList();
 		List<Coffee> coffeeList = order.getCoffeeList();

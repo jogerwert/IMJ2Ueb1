@@ -85,6 +85,10 @@ public class TeaServiceImpl implements TeaService{
 		return teaEntity;
 	}
 	
+	/**
+	 * Erstellt einen String, der das Tee-Objekt zusammenfassend darstellt.
+	 * @param tea - Tee-Objekt, das zusammengefasst werden soll
+	 */
 	@Override
 	public String summarizeTea(Tea tea) {
 		StringBuilder sb = new StringBuilder();

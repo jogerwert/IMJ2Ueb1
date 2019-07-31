@@ -95,6 +95,10 @@ public class CoffeeServiceImpl implements CoffeeService{
 		return this.coffeeRepository.findByCoffeeId(coffeeId);
 	}
 
+	/**
+	 * Erstellt einen String, der das Kaffee-Objekt zusammenfassend darstellt.
+	 * @param coffee - Kaffee-Objekt, das zusammengefasst werden soll
+	 */
 	@Override
 	public String summarizeCoffee(Coffee coffee) {
 		StringBuilder sb = new StringBuilder();
